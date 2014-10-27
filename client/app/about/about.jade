@@ -1,0 +1,11 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.col-md-12
+    | This is the about view.
+    | out of the angular $scope: {{message}} {{counter}}
+    .p
+        .btn.btn-primary(ng-click='increment()') Add
+        .btn.btn-primary(ng-click='reset()') Reset
+        input.form-control(ng-model='incParam', type='number')
+    .p
+        The counter is {{counter}}
