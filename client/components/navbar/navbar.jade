@@ -19,6 +19,9 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
         li(ng-class='{active: isActive("/pdf")}')
           a(href='/pdf') PDF
 
+        li(ng-class='{active: isActive("/chat-test")}')
+          a(href='/chat-test') Chat Test
+
         li(ng-show='isAdmin()', ng-class='{active: isActive("/admin")}')
           a(href='/admin') Admin
 
