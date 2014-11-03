@@ -240,6 +240,8 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/public/{,*/}*.js',
             '<%= yeoman.dist %>/public/{,*/}*.css',
+			'!<%= yeoman.dist %>/public/bower_components/pdfjs-dist/build/pdf.js',
++           '!<%= yeoman.dist %>/public/bower_components/pdfjs-dist/build/pdf.worker.js',
             '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= yeoman.dist %>/public/assets/fonts/*'
           ]
