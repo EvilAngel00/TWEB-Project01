@@ -10,11 +10,11 @@ angular.module('twebProject01App')
     });
 
     $scope.addMessage = function() {
-      if($scope.newMessage === '') {
+      if(this.newMessage === '') {
         return;
       }
-      $http.post('/api/messages', { content: $scope.newMessage, user: Auth.getCurrentUser().name });
-      $scope.newMessage = '';
+      $http.post('/api/messages', { content: this.newMessage, user: Auth.getCurrentUser().name });
+      this.newMessage = '';
     };
 
     $scope.deleteMessage = function(message) {
