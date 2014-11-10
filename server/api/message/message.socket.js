@@ -16,7 +16,10 @@ exports.register = function(socket) {
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('message:save', doc);
+
+  Message.populate(doc, {path: 'user', select: 'name'}, function(err, message) {
+     socket.emit('message:save', message);
+  });
 }
 
 function onRemove(socket, doc, cb) {

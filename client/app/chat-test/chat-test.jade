@@ -4,7 +4,7 @@ div(ng-include='"components/navbar/navbar.html"')
     h1.page-header Chat:
     div#chatDiv(style='height: 500px; overflow: auto')
       ul(ng-repeat='message in allMessages')
-          | {{message.user}} ({{message.date | date:'HH:mm:ss' }}) :
+          | {{message.user.name}} ({{message.date | date:'HH:mm:ss' }}) :
           | {{message.content}}
 
     form.message-form
