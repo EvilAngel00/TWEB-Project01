@@ -24,4 +24,9 @@ angular.module('twebProject01App')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('message');
     });
+	
+	$scope.scroll = function() {
+		var box = document.getElementById('chatDiv');
+		box.scrollTop = box.scrollHeight;
+	};
   });
