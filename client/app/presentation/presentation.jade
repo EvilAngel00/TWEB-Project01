@@ -10,7 +10,7 @@ header#banner.hero-unit
     .col-md-12
     h1.page-header
       p
-        a.btn.btn-primary.btn-lg(href='/pdf', role='button') Create New Classroom
+        a.btn.btn-primary.btn-lg(href='/newclassroom', role='button') Create New Classroom
       br    
       p.lead Join Existing Classroom:
      
@@ -22,7 +22,7 @@ header#banner.hero-unit
         th PDF Name
       tr(ng-repeat='classroom in allClassrooms')
         td  
-          a(href='/newclassroom') {{classroom.name}}
+          a(href='/pdf') {{classroom.name}}
         td  {{classroom.creator}}
         td  {{classroom.pdf}}
         
