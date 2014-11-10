@@ -1,0 +1,24 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+  .container
+    h1 Live New Classroom
+    p.lead Create A New Classroom 
+
+.container
+  .row
+    br
+    //div.alert.alert-danger(role='alert')(ng-hide='isLoggedIn()')
+    //  p.lead You are not logged in !
+    //  p Log in 
+    //    a(href='/login') here.
+
+    div.input-group.input-group-lg
+      span.input-group-addon Classroom Name: 
+      input.form-control(type='text', placeholder='Name')
+    
+    br
+    
+    div.input-group.input-group-lg
+      span.input-group-addon Name:
+      input.form-control(type='text', placeholder='Name')
