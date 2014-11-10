@@ -4,8 +4,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var MessageSchema = new Schema({
-  user: {type: Schema.Types.ObjectId, 
-		 ref: 'User'},
+  user: {type: String, 
+		 default: "Unknown user"},
   content: String,
   date: {type: Date, default: Date.now}
 });

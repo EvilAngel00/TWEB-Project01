@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('twebProject01App')
-  .controller('ChatTestCtrl', function ($scope, $http, socket) {
+  .controller('ChatTestCtrl', function ($scope, $http, socket, Auth) {
     $scope.allMessages = [];
 	
 	$http.get('/api/messages').success(function(allMessages) {
@@ -13,7 +13,7 @@ angular.module('twebProject01App')
       if($scope.newMessage === '') {
         return;
       }
-      $http.post('/api/messages', { content: $scope.newMessage });
+      $http.post('/api/messages', { content: $scope.newMessage, user: Auth.getCurrentUser().name });
       $scope.newMessage = '';
     };
 

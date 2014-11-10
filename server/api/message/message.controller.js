@@ -22,17 +22,11 @@ exports.show = function(req, res) {
 
 // Creates a new message in the DB.
 exports.create = function(req, res) {
-
-  var message = new Message(_.merge({ user: req.user._id }, req.body));
-  // Message.create(req.body, function(err, message) {
-    // if(err) { return handleError(res, err); }
-    // return res.json(201, message);
-  // });
-  
-  message.save(function(err, comment) {
+  Message.create(req.body, function(err, message) {
     if(err) { return handleError(res, err); }
-    return res.json(201, comment);
+    return res.json(201, message);
   });
+
 };
 
 // Updates an existing message in the DB.
