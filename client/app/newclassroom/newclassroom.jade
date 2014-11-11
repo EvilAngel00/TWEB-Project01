@@ -13,12 +13,21 @@ header#banner.hero-unit
     //  p Log in 
     //    a(href='/login') here.
 
-    div.input-group.input-group-lg
+    .col-md-4
+    div.col-md-4.input-group.input-group
       span.input-group-addon Classroom Name: 
-      input.form-control(type='text', placeholder='Name')
+      input.form-control(type='text', placeholder='Name', ng-model='classroomName')
     
     br
     
-    div.input-group.input-group-lg
-      span.input-group-addon Name:
-      input.form-control(type='text', placeholder='Name')
+    .col-md-4
+    .panel.col-md-4.panel-default
+      .panel-heading PDF Lesson
+        .panel-body.col-md-4
+            br
+            input.input-file(ng-model='slidesPath', type='file')
+    br
+    
+    .col-md-4
+    div.col-md-4
+      a.btn.btn-primary.btn-lg(href='/pdf', role='button') Create Classroom
