@@ -8,25 +8,26 @@ header#banner.hero-unit
 .container
   .row
     br
-    //div.alert.alert-danger(role='alert')(ng-hide='isLoggedIn()')
-    //  p.lead You are not logged in !
-    //  p Log in 
-    //    a(href='/login') here.
+    div.alert.alert-danger(role='alert')(ng-hide='isLoggedIn()')
+      p.lead You are not logged in !
+      p Log in 
+        a(href='/login', ng-click='login()') here.
 
+    
     .col-md-4
-    div.col-md-4.input-group.input-group
+    div.col-md-4.input-group.input-group(ng-show='isLoggedIn()')
       span.input-group-addon Classroom Name: 
       input.form-control(type='text', placeholder='Name', ng-model='classroomName')
     
     br
     
     .col-md-4
-    div.col-md-4.input-group.input-group
+    div.col-md-4.input-group.input-group(ng-show='isLoggedIn()')
       span.input-group-addon Slides Name: 
       input.form-control(type='text', placeholder='Slides', ng-model='slidesPath')
       
     br
     
     .col-md-4
-    div.col-md-4
+    div.col-md-4(ng-show='isLoggedIn()')
       a.btn.btn-primary.btn-lg(href='/pdf', role='button', ng-click='addClassroom()') Create Classroom

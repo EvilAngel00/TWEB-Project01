@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('twebProject01App')
-    .controller('PresentationCtrl', function ($scope, $http, socket) {
+    .controller('PresentationCtrl', function ($scope, $http, socket, $window) {
         $scope.allClassrooms = [];
 
         $http.get('/api/classrooms').success(function (allClassrooms) {
@@ -18,6 +18,13 @@ angular.module('twebProject01App')
                 user: Auth.getCurrentUser().name
             });
             $scope.newClassroom = '';
+        };
+
+        $scope.enterClassroom = function (classroom) {
+
+            $window.location = "/pdfStudent?id=" + classroom._id
+            console.log(classroom);
+
         };
 
         $scope.deleteClassroom = function (classroom) {

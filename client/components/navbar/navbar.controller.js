@@ -4,7 +4,7 @@ angular.module('twebProject01App')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
-      'link': '/'
+      'link': '/presentation'
     }];
 
     $scope.isCollapsed = true;

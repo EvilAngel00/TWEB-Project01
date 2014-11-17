@@ -22,7 +22,7 @@ header#banner.hero-unit
         th PDF Name
       tr(ng-repeat='classroom in allClassrooms')
         td  
-          a(href='/pdf') {{classroom.name}}
+          a(href='/pdfStudent', ng-click='enterClassroom(classroom)') {{classroom.name}}
         td  {{classroom.creator}}
         td  {{classroom.pdf}}
         

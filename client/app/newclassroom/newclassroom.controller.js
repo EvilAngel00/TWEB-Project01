@@ -20,7 +20,7 @@ angular.module('twebProject01App')
             $http.post('/api/classrooms', {
                 name: this.classroomName,
                 creator: Auth.getCurrentUser().name,
-                pdf: "/assets/slides/" + this.slidesPath,
+                pdf: this.slidesPath,
                 isActive: true
             }).success(function (classroom) {
                 $window.location = "/pdf?id=" + classroom._id
@@ -29,5 +29,9 @@ angular.module('twebProject01App')
 
 
 
+        };
+
+        $scope.login = function () {
+            $window.location = "/login?from=newclassroom";
         };
     });
