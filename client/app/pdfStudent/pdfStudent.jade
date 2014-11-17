@@ -1,0 +1,15 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+  div.row
+    div.col-md-8
+      button#prev Previous
+      button#next Next
+      span
+        | Page:
+        span#page_num
+        | /
+        span#page_count
+      br
+      canvas#slides
+    div(ng-controller='ChatTestCtrl')(ng-include='"app/chat-test/chat-test.html"')

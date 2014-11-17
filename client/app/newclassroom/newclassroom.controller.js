@@ -6,12 +6,9 @@ angular.module('twebProject01App')
         $scope.isLoggedIn = Auth.isLoggedIn;
 
         $scope.allClassrooms = [];
-        $scope.currentClassroom;
 
         $http.get('/api/classrooms').success(function (allClassrooms) {
             $scope.allClassrooms = allClassrooms;
-            $scope.currentClassroom = allClassrooms;
-
         });
 
         $scope.addClassroom = function () {
