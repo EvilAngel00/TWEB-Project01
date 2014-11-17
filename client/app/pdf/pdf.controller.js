@@ -2,9 +2,11 @@
 'use strict';
 
 angular.module('twebProject01App')
-  .controller('PdfCtrl', function ($scope) {
+  .controller('PdfCtrl', function ($scope, $location) {
 	
-	var url = '/assets/slides/lala.pdf';
+	console.log($location.search().id);
+			
+	var url = '/assets/slides/test.pdf';
 
     var pdfDoc = null,
         pageNum = 1,
