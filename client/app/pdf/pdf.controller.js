@@ -3,7 +3,6 @@
 
 angular.module('twebProject01App')
   .controller('PdfCtrl', function ($scope) {
-    $scope.message = 'Hello';
 	
 	var url = '/assets/slides/lala.pdf';
 
