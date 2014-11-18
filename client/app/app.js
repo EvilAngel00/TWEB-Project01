@@ -53,26 +53,3 @@ angular.module('twebProject01App', [
     });
   });
   
-	// .service('argumentsService', function() {
-	  // var this.slidesPath;
-	  // var this.id;
-
-	  // var addClassroom = function(slidesPath, id) {
-		  // this.slidesPath = slidesPath;
-		  // this.id = id;
-	  // }
-
-	  // var getSlidesPath = function(){
-		  // return slidesPath;
-	  // }
-	  
-	  // var getId = function(){
-		  // return id;
-	  // }
-
-	  // return {
-		// addClassroom: addClassroom,
-		// getSlidesPath: getSlidesPath,
-		// getId: getId
-	  // };
-	// });

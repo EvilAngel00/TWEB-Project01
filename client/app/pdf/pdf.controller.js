@@ -54,6 +54,11 @@ angular.module('twebProject01App')
 
                 // Update page counters
                 document.getElementById('page_num').textContent = pageNum;
+				
+				$http.post('/api/pageNumbers', {
+					pageNumber: pageNum,
+					classroomId: currentClassroom._id,
+				});
             }
 
             /**
@@ -77,6 +82,10 @@ angular.module('twebProject01App')
                 }
                 pageNum--;
                 queueRenderPage(pageNum);
+				$http.post('/api/pageNumbers', {
+					pageNumber: pageNum,
+					classroomId: currentClassroom._id,
+				});
             }
             document.getElementById('prev').addEventListener('click', onPrevPage);
 
@@ -89,6 +98,10 @@ angular.module('twebProject01App')
                 }
                 pageNum++;
                 queueRenderPage(pageNum);
+				$http.post('/api/pageNumbers', {
+					pageNumber: pageNum,
+					classroomId: currentClassroom._id,
+				});
             }
             document.getElementById('next').addEventListener('click', onNextPage);
 

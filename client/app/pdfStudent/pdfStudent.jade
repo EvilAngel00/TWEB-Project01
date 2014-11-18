@@ -1,10 +1,10 @@
 div(ng-include='"components/navbar/navbar.html"')
-
+div#test
 .container
   div.row
     div.col-md-8
-      button#prev Previous
-      button#next Next
+      button#prev(hidden='hidden') Previous
+      button#next(hidden='hidden') Next
       span
         | Page:
         span#page_num

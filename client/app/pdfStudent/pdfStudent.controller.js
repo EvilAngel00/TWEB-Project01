@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('twebProject01App')
-    .controller('PdfStudentCtrl', function ($scope, $http, $location) {
+    .controller('PdfStudentCtrl', function ($scope, $http, $location, socket) {
         console.log($location.search().id);
 
         $scope.currentClassroom = [];
@@ -51,6 +51,7 @@ angular.module('twebProject01App')
                 });
 
                 // Update page counters
+				pageNum = num;
                 document.getElementById('page_num').textContent = pageNum;
             }
 
@@ -100,5 +101,20 @@ angular.module('twebProject01App')
                 // Initial/first page rendering
                 renderPage(pageNum);
             });
+			
+			$http.get('/api/pageNumbers/' + currentClassroom._id).success(function (pageNumbers) {
+				$scope.pageNumbers = pageNumbers;
+				pageNum = $scope.pageNumbers[Object.keys(pageNumbers).length-1].pageNumber;
+				socket.syncUpdates('pageNumber', $scope.pageNumbers, function(event, pageNumber, pageNumbers) {
+					if (pageNumber.classroomId == currentClassroom._id) {
+						document.getElementById('page_num').textContent = pageNumber.pageNumber;
+						queueRenderPage(pageNumber.pageNumber);
+					}
+				});
+			});
+			
+			$scope.$on('$destroy', function () {
+				socket.unsyncUpdates('pageNumber');
+			});
         });
     });
