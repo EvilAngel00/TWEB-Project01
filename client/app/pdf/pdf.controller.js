@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('twebProject01App')
-    .controller('PdfCtrl', function ($scope, $http, $location) {
+    .controller('PdfCtrl', function ($scope, $http, $location, socket) {
 
         console.log($location.search().id);
 
@@ -116,6 +116,28 @@ angular.module('twebProject01App')
                 renderPage(pageNum);
             });
         });
+    
+    $http.get('/api/feedbacks/' + $location.search().id).success(function (feedbacks) {
+            $scope.feedbacks = feedbacks;
+            var feedbackCount = [0, 0, 0];
+            for (var i = 0; i < Object.keys(feedbacks).length; i++) {
+                feedbackCount[feedbacks[i].number - 1] += 1;
+            }
+            document.getElementById('tooQuick').textContent = feedbackCount[0];
+            document.getElementById('perfect').textContent = feedbackCount[1];
+            document.getElementById('tooSlow').textContent = feedbackCount[2];
+            
+            socket.syncUpdates('feedback', $scope.feedbacks, function(event, feedback, feedbacks) {
+                if (feedback.number == 1) { 
+                    document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
+                }
+                else if (feedback.number == 2) { 
+                    document.getElementById('perfect').textContent = feedbackCount[1] += 1;
+                }
+                else if (feedback.number == 3) { 
+                    document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
+                }
+            });
+        });
 
-
-    });
+});

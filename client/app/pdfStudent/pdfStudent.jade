@@ -1,5 +1,4 @@
 div(ng-include='"components/navbar/navbar.html"')
-div#test
 .container
   div.row
     div.col-md-8
@@ -12,4 +11,15 @@ div#test
         span#page_count
       br
       canvas#slides
+      br
+      center
+        button(ng-click='addFeedback(1);') Trop rapide
+        button(ng-click='addFeedback(2);') Bon rythme
+        button(ng-click='addFeedback(3);') Trop lent
+        br
+        span#tooQuick 0
+        | &nbsp;&nbsp;&nbsp;
+        span#perfect 0
+        | &nbsp;&nbsp;&nbsp;
+        span#tooSlow 0
     div(ng-controller='ChatTestCtrl')(ng-include='"app/chat-test/chat-test.html"')
