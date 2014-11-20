@@ -13,13 +13,13 @@ div(ng-include='"components/navbar/navbar.html"')
       canvas#slides
       br
       center
-        button(ng-click='addFeedback(1);') Trop rapide
-        button(ng-click='addFeedback(2);') Bon rythme
-        button(ng-click='addFeedback(3);') Trop lent
+        a.btn.btn-primary.btn-sm(ng-click='addFeedback(1);') Trop rapide
+        a.btn.btn-primary.btn-sm(ng-click='addFeedback(2);') Bon rythme
+        a.btn.btn-primary.btn-sm(ng-click='addFeedback(3);') Trop lent
         br
         span#tooQuick 0
-        | &nbsp;&nbsp;&nbsp;
+        | &emsp;&emsp;&emsp;&emsp;&emsp;
         span#perfect 0
-        | &nbsp;&nbsp;&nbsp;
+        | &emsp;&emsp;&emsp;&emsp;&emsp;
         span#tooSlow 0
     div(ng-controller='ChatTestCtrl')(ng-include='"app/chat-test/chat-test.html"')
