@@ -6,6 +6,9 @@ angular.module('twebProject01App')
 
         $scope.currentClassroom = [];
         $scope.url = null;
+        $scope.sync = true;
+        $scope.actualPage;
+
 
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
             $scope.currentClassroom = currentClassroom;
@@ -51,7 +54,7 @@ angular.module('twebProject01App')
                 });
 
                 // Update page counters
-				pageNum = num;
+                pageNum = num;
                 document.getElementById('page_num').textContent = pageNum;
             }
 
@@ -101,30 +104,41 @@ angular.module('twebProject01App')
                 // Initial/first page rendering
                 renderPage(pageNum);
             });
-			
-			$http.get('/api/pageNumbers/' + currentClassroom._id).success(function (pageNumbers) {
-				$scope.pageNumbers = pageNumbers;
-				pageNum = $scope.pageNumbers[Object.keys(pageNumbers).length-1].pageNumber;
-				socket.syncUpdates('pageNumber', $scope.pageNumbers, function(event, pageNumber, pageNumbers) {
-					if (pageNumber.classroomId == currentClassroom._id) {
-						document.getElementById('page_num').textContent = pageNumber.pageNumber;
-						queueRenderPage(pageNumber.pageNumber);
-					}
-				});
-			});
-			
-			$scope.$on('$destroy', function () {
-				socket.unsyncUpdates('pageNumber');
-			});
+
+            $http.get('/api/pageNumbers/' + currentClassroom._id).success(function (pageNumbers) {
+                $scope.pageNumbers = pageNumbers;
+                pageNum = $scope.pageNumbers[Object.keys(pageNumbers).length - 1].pageNumber;
+                socket.syncUpdates('pageNumber', $scope.pageNumbers, function (event, pageNumber, pageNumbers) {
+                    if (pageNumber.classroomId == currentClassroom._id) {
+                        $scope.actualPage = pageNumber.pageNumber;
+                        if ($scope.sync) {
+                            document.getElementById('page_num').textContent = pageNumber.pageNumber;
+                            queueRenderPage(pageNumber.pageNumber);
+                        }
+                    }
+                });
+            });
+
+            $scope.$on('$destroy', function () {
+                socket.unsyncUpdates('pageNumber');
+            });
+
+            $scope.syncUnsync = function () {
+                if ($scope.sync) {
+                    console.log("sync");
+                    document.getElementById('page_num').textContent = $scope.actualPage;
+                    queueRenderPage($scope.actualPage);
+                }
+            }
         });
-    
-        $scope.addFeedback = function(number) {
+
+        $scope.addFeedback = function (number) {
             $http.post('/api/feedbacks', {
                 number: number,
                 classroomId: $location.search().id
             });
         };
-    
+
         $http.get('/api/feedbacks/' + $location.search().id).success(function (feedbacks) {
             $scope.feedbacks = feedbacks;
             var feedbackCount = [0, 0, 0];
@@ -134,17 +148,19 @@ angular.module('twebProject01App')
             document.getElementById('tooQuick').textContent = feedbackCount[0];
             document.getElementById('perfect').textContent = feedbackCount[1];
             document.getElementById('tooSlow').textContent = feedbackCount[2];
-            
-            socket.syncUpdates('feedback', $scope.feedbacks, function(event, feedback, feedbacks) {
-                if (feedback.number == 1) { 
+
+            socket.syncUpdates('feedback', $scope.feedbacks, function (event, feedback, feedbacks) {
+                if (feedback.number == 1) {
                     document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
-                }
-                else if (feedback.number == 2) { 
+                } else if (feedback.number == 2) {
                     document.getElementById('perfect').textContent = feedbackCount[1] += 1;
-                }
-                else if (feedback.number == 3) { 
+                } else if (feedback.number == 3) {
                     document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
                 }
             });
         });
-});
+
+
+
+
+    });

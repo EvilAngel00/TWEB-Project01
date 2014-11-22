@@ -2,20 +2,25 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   div.row
     div.col-md-8
-      button#prev(hidden='hidden') Previous
-      button#next(hidden='hidden') Next
+      a.btn.btn-default.btn-sm#prev(ng-hide='sync') < Previous
+      &nbsp;
+      a.btn.btn-default.btn-sm#next(ng-hide='sync') Next >
+      &nbsp;
       span
-        | Page:
+        | Page:&nbsp;
         span#page_num
-        | /
+        | &nbsp;/&nbsp;
         span#page_count
+        &nbsp;
+        input(type='checkbox', ng-model='sync', ng-change='syncUnsync()')
+        | Sync   
       br
       canvas#slides
       br
       center
-        a.btn.btn-primary.btn-sm(ng-click='addFeedback(1);') Trop rapide
-        a.btn.btn-primary.btn-sm(ng-click='addFeedback(2);') Bon rythme
-        a.btn.btn-primary.btn-sm(ng-click='addFeedback(3);') Trop lent
+        a.btn.btn-danger.btn-sm(ng-click='addFeedback(1);') Trop rapide
+        a.btn.btn-success.btn-sm(ng-click='addFeedback(2);') Bon rythme
+        a.btn.btn-warning.btn-sm(ng-click='addFeedback(3);') Trop lent
         br
         span#tooQuick 0
         | &emsp;&emsp;&emsp;&emsp;&emsp;

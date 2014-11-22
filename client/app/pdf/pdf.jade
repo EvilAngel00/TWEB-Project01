@@ -3,21 +3,29 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   div.row
     div.col-md-8
-      button#prev Previous
-      button#next Next
+      a.btn.btn-default.btn-sm#prev Previous
+      &nbsp;
+      a.btn.btn-default.btn-sm#next Next
+      &nbsp;
       span
-        | Page:
+        | Page:&nbsp;
         span#page_num
-        | /
+        | &nbsp;/&nbsp;
         span#page_count
       br
       canvas#slides
       br
       center
         br
+        span.label.label-danger Trop rapide
+        &nbsp;
+        span.label.label-success Bon rythme
+        &nbsp;
+        span.label.label-warning Trop lent
+        br
         span#tooQuick 0
-        | &nbsp;&nbsp;&nbsp;
+        | &emsp;&emsp;&emsp;&emsp;&emsp;
         span#perfect 0
-        | &nbsp;&nbsp;&nbsp;
+        | &emsp;&emsp;&emsp;&emsp;&emsp;
         span#tooSlow 0
     div(ng-controller='ChatTestCtrl')(ng-include='"app/chat-test/chat-test.html"')

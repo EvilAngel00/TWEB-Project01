@@ -12,6 +12,7 @@ angular.module('twebProject01App')
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
             $scope.currentClassroom = currentClassroom;
             $scope.url = "/assets/slides/" + currentClassroom.pdf;
+            console.log("HTTP GET: ");
             console.log($scope.currentClassroom);
 
             var pdfDoc = null,
@@ -54,11 +55,11 @@ angular.module('twebProject01App')
 
                 // Update page counters
                 document.getElementById('page_num').textContent = pageNum;
-				
-				$http.post('/api/pageNumbers', {
-					pageNumber: pageNum,
-					classroomId: currentClassroom._id,
-				});
+
+                $http.post('/api/pageNumbers', {
+                    pageNumber: pageNum,
+                    classroomId: currentClassroom._id,
+                });
             }
 
             /**
@@ -82,10 +83,10 @@ angular.module('twebProject01App')
                 }
                 pageNum--;
                 queueRenderPage(pageNum);
-				$http.post('/api/pageNumbers', {
-					pageNumber: pageNum,
-					classroomId: currentClassroom._id,
-				});
+                $http.post('/api/pageNumbers', {
+                    pageNumber: pageNum,
+                    classroomId: currentClassroom._id,
+                });
             }
             document.getElementById('prev').addEventListener('click', onPrevPage);
 
@@ -98,10 +99,10 @@ angular.module('twebProject01App')
                 }
                 pageNum++;
                 queueRenderPage(pageNum);
-				$http.post('/api/pageNumbers', {
-					pageNumber: pageNum,
-					classroomId: currentClassroom._id,
-				});
+                $http.post('/api/pageNumbers', {
+                    pageNumber: pageNum,
+                    classroomId: currentClassroom._id,
+                });
             }
             document.getElementById('next').addEventListener('click', onNextPage);
 
@@ -116,8 +117,8 @@ angular.module('twebProject01App')
                 renderPage(pageNum);
             });
         });
-    
-    $http.get('/api/feedbacks/' + $location.search().id).success(function (feedbacks) {
+
+        $http.get('/api/feedbacks/' + $location.search().id).success(function (feedbacks) {
             $scope.feedbacks = feedbacks;
             var feedbackCount = [0, 0, 0];
             for (var i = 0; i < Object.keys(feedbacks).length; i++) {
@@ -126,18 +127,38 @@ angular.module('twebProject01App')
             document.getElementById('tooQuick').textContent = feedbackCount[0];
             document.getElementById('perfect').textContent = feedbackCount[1];
             document.getElementById('tooSlow').textContent = feedbackCount[2];
-            
-            socket.syncUpdates('feedback', $scope.feedbacks, function(event, feedback, feedbacks) {
-                if (feedback.number == 1) { 
+
+            socket.syncUpdates('feedback', $scope.feedbacks, function (event, feedback, feedbacks) {
+                if (feedback.number == 1) {
                     document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
-                }
-                else if (feedback.number == 2) { 
+                } else if (feedback.number == 2) {
                     document.getElementById('perfect').textContent = feedbackCount[1] += 1;
-                }
-                else if (feedback.number == 3) { 
+                } else if (feedback.number == 3) {
                     document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
                 }
             });
+
+            window.onbeforeunload = function (event) {
+                if (!($location.search().id === undefined)) {
+                    var message = 'Are you sure you want to leave this page ?';
+                    if (typeof event == 'undefined') {
+                        event = window.event;
+                    }
+                    if (event) {
+                        event.returnValue = message;
+                    }
+                }
+                return message;
+            }
+
+            window.onunload = function (event) {
+                if (!($location.search().id === undefined)) {
+                    $http.put('/api/classrooms/' + $location.search().id, {
+                        isActive: false
+                    });
+                }
+            }
+
         });
 
-});
+    });
