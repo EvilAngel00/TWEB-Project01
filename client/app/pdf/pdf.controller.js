@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('twebProject01App')
-    .controller('PdfCtrl', function ($scope, $http, $location, socket) {
+    .controller('PdfCtrl', function ($scope, $http, $location, socket, Auth, $window) {
 
         console.log($location.search().id);
 
@@ -10,6 +10,35 @@ angular.module('twebProject01App')
         $scope.url = null;
 
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
+		
+			$scope.currentUserId = Auth.getCurrentUser()._id;
+			console.log("From classroom : " + currentClassroom.creatorId);
+			console.log("From Auth : " + $scope.currentUserId);
+			if ($scope.currentUserId != currentClassroom.creatorId) {
+				$window.location = "/pdfStudent?id=" + currentClassroom._id;
+			}
+			
+			window.onbeforeunload = function (event) {
+                if (!($location.search().id === undefined)) {
+                    var message = 'Are you sure you want to leave this page ?';
+                    if (typeof event == 'undefined') {
+                        event = window.event;
+                    }
+                    if (event) {
+                        event.returnValue = message;
+                    }
+                }
+                return message;
+            }
+
+            window.onunload = function (event) {
+                if (!($location.search().id === undefined)) {
+                    $http.put('/api/classrooms/' + $location.search().id, {
+                        isActive: false
+                    });
+                }
+            }
+			
             $scope.currentClassroom = currentClassroom;
             $scope.url = "/assets/slides/" + currentClassroom.pdf;
             console.log("HTTP GET: ");
@@ -137,27 +166,6 @@ angular.module('twebProject01App')
                     document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
                 }
             });
-
-            window.onbeforeunload = function (event) {
-                if (!($location.search().id === undefined)) {
-                    var message = 'Are you sure you want to leave this page ?';
-                    if (typeof event == 'undefined') {
-                        event = window.event;
-                    }
-                    if (event) {
-                        event.returnValue = message;
-                    }
-                }
-                return message;
-            }
-
-            window.onunload = function (event) {
-                if (!($location.search().id === undefined)) {
-                    $http.put('/api/classrooms/' + $location.search().id, {
-                        isActive: false
-                    });
-                }
-            }
 
         });
 

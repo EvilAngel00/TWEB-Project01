@@ -11,14 +11,7 @@ exports.index = function(req, res) {
   });
 };
 
-// Get a single pageNumber
-/*exports.show = function(req, res) {
-  PageNumber.findById(req.params.id, function (err, pageNumber) {
-    if(err) { return handleError(res, err); }
-    if(!pageNumber) { return res.send(404); }
-    return res.json(pageNumber);
-  });
-};*/
+// Get a list of page numbers, based on the classroomId
 exports.show = function(req, res) {
   PageNumber.find({ classroomId: req.params.id}, function (err, pageNumber) {
     if(err) { return handleError(res, err); }

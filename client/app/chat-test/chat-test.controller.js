@@ -5,7 +5,7 @@ angular.module('twebProject01App')
         $scope.allMessages = [];
         $scope.classroomId = $location.search().id;
 
-        $http.get('/api/messages').success(function (allMessages) {
+        $http.get('/api/messages/' + $scope.classroomId).success(function (allMessages) {
             $scope.allMessages = allMessages;
             socket.syncUpdates('message', $scope.allMessages);
         });

@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var ClassroomSchema = new Schema({
   name: String,
   creator: String,
+  creatorId: String,
   pdf: String,
   isActive: Boolean
 });

@@ -31,10 +31,11 @@ angular.module('twebProject01App')
             $http.post('/api/classrooms', {
                 name: this.classroomName,
                 creator: Auth.getCurrentUser().name,
+				creatorId: Auth.getCurrentUser()._id,
                 pdf: $scope.selected.path,
                 isActive: true
             }).success(function (classroom) {
-                $window.location = "/pdf?id=" + classroom._id
+                $window.location = "/pdf?id=" + classroom._id;
                 console.log(classroom);
             });
 

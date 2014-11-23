@@ -11,14 +11,7 @@ exports.index = function(req, res) {
   });
 };
 
-// Get a single feedback
-/*exports.show = function(req, res) {
-  Feedback.findById(req.params.id, function (err, feedback) {
-    if(err) { return handleError(res, err); }
-    if(!feedback) { return res.send(404); }
-    return res.json(feedback);
-  });
-};*/
+// Get a list of feedbacks, based on the classroomId
 exports.show = function(req, res) {
   Feedback.find({ classroomId: req.params.id }, function (err, feedback) {
     if(err) { return handleError(res, err); }
