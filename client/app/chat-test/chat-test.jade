@@ -1,3 +1,4 @@
+br
 div#chatDiv(style='height: 600px; overflow: auto;')
   ul(ng-repeat='message in allMessages | filter: {classroomId: classroomId}', ng-init='scroll()')
       | {{message.user}} ({{message.date | date:'HH:mm:ss' }}) :

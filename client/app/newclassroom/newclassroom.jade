@@ -23,8 +23,15 @@ header#banner.hero-unit
     
     .col-md-4
     div.col-md-4.input-group.input-group(ng-show='isLoggedIn()')
-      span.input-group-addon Slides Name: 
-      input.form-control(type='text', placeholder='Slides', ng-model='slidesPath')
+      //span.input-group-addon Slides Name: 
+      //input.form-control(type='text', placeholder='Slides', ng-model='slidesPath')
+      table.table.table-hover
+        tr
+          th PDF Name
+          th Path
+        tr(ng-click="select(file)", ng-repeat='file in allFiles', ng-class="{active:file == selected}")
+          td  {{file.title}}
+          td  {{file.path}}
       
     br
     

@@ -14,7 +14,7 @@ header#banner.hero-unit
       br    
       p.lead Join Existing Classroom:
      
-  div#chatContainer.chat
+  div
     table.table.table-hover
       tr
         th Name
@@ -23,6 +23,6 @@ header#banner.hero-unit
       tr(ng-repeat='classroom in allClassrooms | filter: {isActive: true}')
         td  
           a(href='/pdfStudent', ng-click='enterClassroom(classroom)') {{classroom.name}}
-        td  {{classroom.creator}}
-        td  {{classroom.pdf}}
+        td {{classroom.creator}}
+        td {{classroom.pdf}}
         

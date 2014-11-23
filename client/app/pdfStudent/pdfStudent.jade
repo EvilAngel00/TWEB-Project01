@@ -1,30 +1,33 @@
-div(ng-include='"components/navbar/navbar.html"')
-.container
+.container-fluid
   div.row
-    div.col-md-8
-      a.btn.btn-default.btn-sm#prev(ng-hide='sync') < Previous
-      &nbsp;
-      a.btn.btn-default.btn-sm#next(ng-hide='sync') Next >
-      &nbsp;
-      span
-        | Page:&nbsp;
-        span#page_num
-        | &nbsp;/&nbsp;
-        span#page_count
-        &nbsp;
-        input(type='checkbox', ng-model='sync', ng-change='syncUnsync()')
-        | Sync   
+    div.well.col-md-9
+      center
+          a.btn.btn-default.btn-sm#prev(ng-hide='sync') < Previous
+          &nbsp;
+          a.btn.btn-default.btn-sm#next(ng-hide='sync') Next >
+          &nbsp;
+          span
+            | Page:&nbsp;
+            span#page_num
+            | &nbsp;/&nbsp;
+            span#page_count
+            &nbsp;
+            input(type='checkbox', ng-model='sync', ng-change='syncUnsync()')
+            | Sync   
       br
-      canvas#slides
+      center
+        canvas#slides
       br
       center
         a.btn.btn-danger.btn-sm(ng-click='addFeedback(1);') Trop rapide
+        &emsp;
         a.btn.btn-success.btn-sm(ng-click='addFeedback(2);') Bon rythme
+        &emsp;
         a.btn.btn-warning.btn-sm(ng-click='addFeedback(3);') Trop lent
         br
         span#tooQuick 0
-        | &emsp;&emsp;&emsp;&emsp;&emsp;
+        | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         span#perfect 0
-        | &emsp;&emsp;&emsp;&emsp;&emsp;
+        | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         span#tooSlow 0
-    div(ng-controller='ChatTestCtrl')(ng-include='"app/chat-test/chat-test.html"')
+    div.row-fluid.col-md-3(ng-controller='ChatTestCtrl')(ng-include='"app/chat-test/chat-test.html"')

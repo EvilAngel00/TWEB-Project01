@@ -1,22 +1,21 @@
-div(ng-include='"components/navbar/navbar.html"')
-
-.container
+.container-fluid
   div.row
-    div.col-md-8
-      a.btn.btn-default.btn-sm#prev Previous
-      &nbsp;
-      a.btn.btn-default.btn-sm#next Next
-      &nbsp;
-      span
-        | Page:&nbsp;
-        span#page_num
-        | &nbsp;/&nbsp;
-        span#page_count
-      br
-      canvas#slides
+    div.well.col-md-9
+      center
+          a.btn.btn-default.btn-sm#prev Previous
+          &nbsp;
+          a.btn.btn-default.btn-sm#next Next
+          &nbsp;
+          span
+            | Page:&nbsp;
+            span#page_num
+            | &nbsp;/&nbsp;
+            span#page_count
       br
       center
-        br
+        canvas#slides
+      br
+      center
         span.label.label-danger Trop rapide
         &nbsp;
         span.label.label-success Bon rythme
@@ -28,4 +27,4 @@ div(ng-include='"components/navbar/navbar.html"')
         span#perfect 0
         | &emsp;&emsp;&emsp;&emsp;&emsp;
         span#tooSlow 0
-    div(ng-controller='ChatTestCtrl')(ng-include='"app/chat-test/chat-test.html"')
+    div.row-fluid.col-md-3(ng-controller='ChatTestCtrl')(ng-include='"app/chat-test/chat-test.html"')

@@ -3,6 +3,7 @@
 angular.module('twebProject01App')
     .controller('PresentationCtrl', function ($scope, $http, socket, $window) {
         $scope.allClassrooms = [];
+        $scope.selected = {};
 
         $http.get('/api/classrooms').success(function (allClassrooms) {
             $scope.allClassrooms = allClassrooms;
@@ -34,4 +35,9 @@ angular.module('twebProject01App')
         $scope.$on('$destroy', function () {
             socket.unsyncUpdates('classroom');
         });
+
+        $scope.select = function (classroom) {
+            $scope.selected = classroom;
+            console.log($scope.selected);
+        }
     });
