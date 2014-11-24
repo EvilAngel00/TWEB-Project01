@@ -10,6 +10,7 @@ angular.module('twebProject01App')
             socket.syncUpdates('message', $scope.allMessages);
         });
 
+        // Adds a message with current room id for filtering.
         $scope.addMessage = function () {
             if (this.newMessage === '') {
                 return;
@@ -30,6 +31,7 @@ angular.module('twebProject01App')
             socket.unsyncUpdates('message');
         });
 
+        // Keeps the chat scrolled to bottom.
         $scope.scroll = function () {
             var box = document.getElementById('chatDiv');
             box.scrollTop = box.scrollHeight;

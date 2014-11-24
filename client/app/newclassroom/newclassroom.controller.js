@@ -50,6 +50,7 @@ angular.module('twebProject01App')
             $window.location = "/login?from=newclassroom";
         };
 
+        // Retrieve currently selected file in table.
         $scope.select = function (file) {
             $scope.selected = file;
             console.log($scope.selected.path);
