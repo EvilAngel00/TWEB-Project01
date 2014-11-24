@@ -56,6 +56,8 @@ X: Not Yet Implemented
 * Better management of users and redirections.
 * Fullscreen + mouse support during PDF presentation.
 * Chat filtering for teachers (deletion of messages, censorship).
+* Access past given lectures and past attended lectures.
+	* This can help rejoining a classroom in case of unexpected exit.
 
 ##Known Issues and Possible Workarounds
 * When a teacher leaves a page (by clicking yes when prompted), the classroom should become inactive. 
