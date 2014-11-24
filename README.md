@@ -24,7 +24,6 @@ X: Not Yet Implemented
 | Control Slides  |   O   |    O   |
 | See Feedback    |   O   |    O   |
 | Submit Poll     |   X   |    X   |
-| Explore Archives|   X   |    X   |
 
 |         Student         |  Local  |  Heroku  |
 |:-----------------------:|:-------:|:--------:|
@@ -48,6 +47,7 @@ X: Not Yet Implemented
 ##TODO
 * Automatic refresh of active classes in main page.
 * Allow public / private classes with password.
+	* Allow access to classromm with personnalized id and / or name.
 * Update overall UI.
 * Upload PDF files with public / private option.
 * Access public uploaded files.
@@ -55,6 +55,7 @@ X: Not Yet Implemented
 * Detect if file already exists in database to avoid unnecessary redundancy (metadata ?).
 * Better management of users and redirections.
 * Fullscreen + mouse support during PDF presentation.
+* Chat filtering for teachers (deletion of messages, censorship).
 
 ##Known Issues and Possible Workarounds
 * When a teacher leaves a page (by clicking yes when prompted), the classroom should become inactive. 
