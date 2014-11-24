@@ -159,13 +159,15 @@ angular.module('twebProject01App')
 			
 			// Synchronize the feedbacks
             socket.syncUpdates('feedback', $scope.feedbacks, function (event, feedback, feedbacks) {
-                if (feedback.number == 1) {
-                    document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
-                } else if (feedback.number == 2) {
-                    document.getElementById('perfect').textContent = feedbackCount[1] += 1;
-                } else if (feedback.number == 3) {
-                    document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
-                }
+				if (feedback.classroomId == $location.search().id) {
+					if (feedback.number == 1) {
+						document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
+					} else if (feedback.number == 2) {
+						document.getElementById('perfect').textContent = feedbackCount[1] += 1;
+					} else if (feedback.number == 3) {
+						document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
+					}
+				}
             });
 
         });
