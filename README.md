@@ -49,6 +49,8 @@ X: Not Yet Implemented
 * Automatic refresh of active classes in main page
 * Allow public / private classes with password
 * Update overall UI
+* Possibly merge teacher and student PDF pages
+* Change how a room becomes inactive
 * Upload PDF files with public / private option
 * Access public uploaded files
 * Access files uploaded by logged user
@@ -60,5 +62,6 @@ X: Not Yet Implemented
 * When a teacher leaves a page (by clicking yes when prompted), the classroom should become inactive. 
 	* This works as intended locally but not in Heroku.
 * Page resizing is not dynamic, several visual glitches depending on resolution / browser zoom.
-* Everyone can access a teacher page by typing the URL because of the exit prompt.
+* If someone tries to access a teacher page without being the creator, he should be redirected to the student page.
 	* Redirection not working with Chrome but working with Firefox.
+	* The browser prompt for exiting the page causes a problem. 
