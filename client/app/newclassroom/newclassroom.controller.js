@@ -10,6 +10,7 @@ angular.module('twebProject01App')
 
         $scope.selected = {};
 
+        // Temporary workaround to choose between available PDF files.
         $http.get('/assets/slides/pdfFiles.json').then(function (allFiles) {
             $scope.allFiles = allFiles.data;
         });
@@ -20,18 +21,18 @@ angular.module('twebProject01App')
 
         $scope.addClassroom = function () {
 
-            console.log($scope.selected);
-
+            // If the user has not selected all fields, prompt and redirect.
             if (this.classroomName === undefined || $scope.selected === {}) {
-                alert("I am an alert box!");
+                alert("Classroom name empty or PDF not selected !");
                 window.location.href = "/newclassroom";
                 return;
             }
 
+            // Add classroom to DB with given inputs.
             $http.post('/api/classrooms', {
                 name: this.classroomName,
                 creator: Auth.getCurrentUser().name,
-				creatorId: Auth.getCurrentUser()._id,
+                creatorId: Auth.getCurrentUser()._id,
                 pdf: $scope.selected.path,
                 isActive: true
             }).success(function (classroom) {
@@ -43,6 +44,8 @@ angular.module('twebProject01App')
 
         };
 
+        // When the user goes to the log in screen, add the origin to
+        // redirect accordingly.
         $scope.login = function () {
             $window.location = "/login?from=newclassroom";
         };
