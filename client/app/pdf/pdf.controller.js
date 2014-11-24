@@ -8,14 +8,16 @@ angular.module('twebProject01App')
         $scope.currentClassroom = [];
         $scope.url = null;
 
+		// Get the current classroom and load the pdf
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
 		
+			// Check if the user is the owner of the classroom, if not, redirect to pdfStudent
 			$scope.currentUserId = Auth.getCurrentUser()._id;
-			
 			if ($scope.currentUserId != currentClassroom.creatorId) {
 				$window.location = "/pdfStudent?id=" + currentClassroom._id;
 			}
 			
+			// Ask the teacher if he really wants to leave the room
 			window.onbeforeunload = function (event) {
                 if (!($location.search().id === undefined)) {
                     var message = 'Are you sure you want to leave this page ?';
@@ -29,6 +31,7 @@ angular.module('twebProject01App')
                 return message;
             }
 
+			// When the teacher leaves, set isActive of the classroom to false
             window.onunload = function (event) {
                 if (!($location.search().id === undefined)) {
                     $http.put('/api/classrooms/' + $location.search().id, {
@@ -143,6 +146,7 @@ angular.module('twebProject01App')
             });
         });
 
+		// Get the initial feedback list
         $http.get('/api/feedbacks/' + $location.search().id).success(function (feedbacks) {
             $scope.feedbacks = feedbacks;
             var feedbackCount = [0, 0, 0];
@@ -152,7 +156,8 @@ angular.module('twebProject01App')
             document.getElementById('tooQuick').textContent = feedbackCount[0];
             document.getElementById('perfect').textContent = feedbackCount[1];
             document.getElementById('tooSlow').textContent = feedbackCount[2];
-
+			
+			// Synchronize the feedbacks
             socket.syncUpdates('feedback', $scope.feedbacks, function (event, feedback, feedbacks) {
                 if (feedback.number == 1) {
                     document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;

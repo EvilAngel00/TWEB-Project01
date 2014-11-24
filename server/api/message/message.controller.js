@@ -11,15 +11,8 @@ exports.index = function(req, res) {
   });
 };
 
-// Get a single message
-/*exports.show = function(req, res) {
-  Message.findById(req.params.id, function (err, message) {
-    if(err) { return handleError(res, err); }
-    if(!message) { return res.send(404); }
-    return res.json(message);
-  });
-};*/
-
+// Get a list of messages, based on the classroomId
+// This is not the auto-generated function, we modified it
 exports.show = function(req, res) {
   Message.find({ classroomId: req.params.id }, function (err, message) {
     if(err) { return handleError(res, err); }

@@ -12,6 +12,7 @@ exports.index = function(req, res) {
 };
 
 // Get a list of feedbacks, based on the classroomId
+// This is not the auto-generated function, we modified it
 exports.show = function(req, res) {
   Feedback.find({ classroomId: req.params.id }, function (err, feedback) {
     if(err) { return handleError(res, err); }

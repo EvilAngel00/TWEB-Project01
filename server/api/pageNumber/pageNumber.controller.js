@@ -12,6 +12,7 @@ exports.index = function(req, res) {
 };
 
 // Get a list of page numbers, based on the classroomId
+// This is not the auto-generated function, we modified it
 exports.show = function(req, res) {
   PageNumber.find({ classroomId: req.params.id}, function (err, pageNumber) {
     if(err) { return handleError(res, err); }

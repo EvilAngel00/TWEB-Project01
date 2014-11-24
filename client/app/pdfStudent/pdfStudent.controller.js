@@ -8,7 +8,7 @@ angular.module('twebProject01App')
         $scope.sync = true;
         $scope.actualPage;
 
-
+		// Get the current classroom and load the pdf
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
             $scope.currentClassroom = currentClassroom;
             $scope.url = "/assets/slides/" + currentClassroom.pdf;
@@ -103,9 +103,12 @@ angular.module('twebProject01App')
                 renderPage(pageNum);
             });
 
+			// Get the initial page number
             $http.get('/api/pageNumbers/' + currentClassroom._id).success(function (pageNumbers) {
                 $scope.pageNumbers = pageNumbers;
                 pageNum = $scope.pageNumbers[Object.keys(pageNumbers).length - 1].pageNumber;
+				
+				// Synchronize the page number with the teacher
                 socket.syncUpdates('pageNumber', $scope.pageNumbers, function (event, pageNumber, pageNumbers) {
                     if (pageNumber.classroomId == currentClassroom._id) {
                         $scope.actualPage = pageNumber.pageNumber;
@@ -129,6 +132,7 @@ angular.module('twebProject01App')
             }
         });
 
+		// To add a feedback to the api
         $scope.addFeedback = function (number) {
             $http.post('/api/feedbacks', {
                 number: number,
@@ -136,6 +140,7 @@ angular.module('twebProject01App')
             });
         };
 
+		// Get the initial feedback list
         $http.get('/api/feedbacks/' + $location.search().id).success(function (feedbacks) {
             $scope.feedbacks = feedbacks;
             var feedbackCount = [0, 0, 0];
@@ -145,7 +150,8 @@ angular.module('twebProject01App')
             document.getElementById('tooQuick').textContent = feedbackCount[0];
             document.getElementById('perfect').textContent = feedbackCount[1];
             document.getElementById('tooSlow').textContent = feedbackCount[2];
-
+			
+			// Synchronize the feedbacks
             socket.syncUpdates('feedback', $scope.feedbacks, function (event, feedback, feedbacks) {
                 if (feedback.number == 1) {
                     document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
@@ -156,8 +162,4 @@ angular.module('twebProject01App')
                 }
             });
         });
-
-
-
-
     });
