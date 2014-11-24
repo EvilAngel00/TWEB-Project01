@@ -2,7 +2,6 @@
 
 angular.module('twebProject01App')
     .controller('PdfStudentCtrl', function ($scope, $http, $location, socket) {
-        console.log($location.search().id);
 
         $scope.currentClassroom = [];
         $scope.url = null;
@@ -13,7 +12,6 @@ angular.module('twebProject01App')
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
             $scope.currentClassroom = currentClassroom;
             $scope.url = "/assets/slides/" + currentClassroom.pdf;
-            console.log($scope.currentClassroom);
 
             var pdfDoc = null,
                 pageNum = 1,
@@ -125,7 +123,6 @@ angular.module('twebProject01App')
 
             $scope.syncUnsync = function () {
                 if ($scope.sync) {
-                    console.log("sync");
                     document.getElementById('page_num').textContent = $scope.actualPage;
                     queueRenderPage($scope.actualPage);
                 }

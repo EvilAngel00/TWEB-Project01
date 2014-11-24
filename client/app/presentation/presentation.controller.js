@@ -22,10 +22,7 @@ angular.module('twebProject01App')
         };
 
         $scope.enterClassroom = function (classroom) {
-
             $window.location = "/pdfStudent?id=" + classroom._id
-            console.log(classroom);
-
         };
 
         $scope.deleteClassroom = function (classroom) {
@@ -38,6 +35,5 @@ angular.module('twebProject01App')
 
         $scope.select = function (classroom) {
             $scope.selected = classroom;
-            console.log($scope.selected);
         }
     });

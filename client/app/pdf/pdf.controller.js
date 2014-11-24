@@ -4,7 +4,6 @@
 angular.module('twebProject01App')
     .controller('PdfCtrl', function ($scope, $http, $location, socket, Auth, $window) {
 
-        console.log($location.search().id);
 
         $scope.currentClassroom = [];
         $scope.url = null;
@@ -12,8 +11,7 @@ angular.module('twebProject01App')
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
 		
 			$scope.currentUserId = Auth.getCurrentUser()._id;
-			console.log("From classroom : " + currentClassroom.creatorId);
-			console.log("From Auth : " + $scope.currentUserId);
+			
 			if ($scope.currentUserId != currentClassroom.creatorId) {
 				$window.location = "/pdfStudent?id=" + currentClassroom._id;
 			}
@@ -41,8 +39,6 @@ angular.module('twebProject01App')
 			
             $scope.currentClassroom = currentClassroom;
             $scope.url = "/assets/slides/" + currentClassroom.pdf;
-            console.log("HTTP GET: ");
-            console.log($scope.currentClassroom);
 
             var pdfDoc = null,
                 pageNum = 1,
