@@ -61,4 +61,4 @@ X: Not Yet Implemented
 	* This works as intended locally but not in Heroku.
 * Page resizing is not dynamic, several visual glitches depending on resolution / browser zoom.
 * Everyone can access a teacher page by typing the URL because of the exit prompt.
-	* Redirection not working.
+	* Redirection not working with Chrome but working with Firefox.
