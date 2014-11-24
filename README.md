@@ -24,7 +24,6 @@ X: Not Yet Implemented
 | Control Slides  |   O   |    O   |
 | See Feedback    |   O   |    O   |
 | Submit Poll     |   X   |    X   |
-| Explore Archives|   X   |    X   |
 
 |         Student         |  Local  |  Heroku  |
 |:-----------------------:|:-------:|:--------:|
