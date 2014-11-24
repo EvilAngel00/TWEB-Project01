@@ -46,22 +46,24 @@ X: Not Yet Implemented
 
 
 ##TODO
-* Automatic refresh of active classes in main page
-* Allow public / private classes with password
-* Update overall UI
-* Possibly merge teacher and student PDF pages
-* Change how a room becomes inactive
-* Upload PDF files with public / private option
-* Access public uploaded files
-* Access files uploaded by logged user
-* Detect if file already exists in database to avoid unnecessary redundancy (metadata ?)
-* Better management of users
-* Fullscreen + mouse support during PDF presentation
+* Automatic refresh of active classes in main page.
+* Allow public / private classes with password.
+* Update overall UI.
+* Upload PDF files with public / private option.
+* Access public uploaded files.
+* Access files uploaded by logged user.
+* Detect if file already exists in database to avoid unnecessary redundancy (metadata ?).
+* Better management of users and redirections.
+* Fullscreen + mouse support during PDF presentation.
 
-##Known Issues
+##Known Issues and Possible Workarounds
 * When a teacher leaves a page (by clicking yes when prompted), the classroom should become inactive. 
 	* This works as intended locally but not in Heroku.
+	* Possibly change how a room becomes inactive by giving the possibilty to the creator/teacher to dismiss the class.
+	* User dashboard with past lectures and possibility to change status (active / inactive).
 * Page resizing is not dynamic, several visual glitches depending on resolution / browser zoom.
 * If someone tries to access a teacher page without being the creator, he should be redirected to the student page.
 	* Redirection not working with Chrome but working with Firefox.
-	* The browser prompt for exiting the page causes a problem. 
+	* The browser prompt for exiting the page causes a problem.
+* Huge code duplication between teacher and student PDF pages.
+	* Merge is possible by detecting room creator and using ng-show / ng-hide.
