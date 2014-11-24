@@ -54,6 +54,7 @@ X: Not Yet Implemented
 * Access files uploaded by logged user
 * Detect if file already exists in database to avoid unnecessary redundancy (metadata ?)
 * Better management of users
+* Fullscreen + mouse support during PDF presentation
 
 ##Known Issues
 * When a teacher leaves a page (by clicking yes when prompted), the classroom should become inactive. 
