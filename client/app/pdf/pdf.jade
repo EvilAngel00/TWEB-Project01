@@ -1,7 +1,12 @@
 .container-fluid
   div.row
     div.well.col-md-9
-      center
+      div.col-md-2
+        center
+          a#activationButton.btn.btn-primary.btn-danger(role='button', ng-click='deactivateClassroom()') Deactivate Classroom
+      div.col-md-2
+      div.col-md-4
+        center
           a.btn.btn-default.btn-sm#prev Previous
           &nbsp;
           a.btn.btn-default.btn-sm#next Next
@@ -10,7 +15,11 @@
             | Page:&nbsp;
             span#page_num
             | &nbsp;/&nbsp;
-            span#page_count
+            span#page_count   
+      div.col-md-2
+      div.col-md-2
+        center
+          a.btn.btn-primary.btn-default(href='/', role='button') Leave Classroom        
       br
       center
         canvas#slides

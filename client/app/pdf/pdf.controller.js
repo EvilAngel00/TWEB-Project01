@@ -7,41 +7,36 @@ angular.module('twebProject01App')
 
         $scope.currentClassroom = [];
         $scope.url = null;
+        $scope.isActive;
+
+        $scope.updateButton = function () {
+            if ($scope.isActive) {
+                document.getElementById("activationButton").textContent = "Deactivate Classroom";
+                document.getElementById("activationButton").className = "btn btn-primary btn-danger";
+            } else {
+                document.getElementById("activationButton").textContent = "Reactivate Classroom";
+                document.getElementById("activationButton").className = "btn btn-primary btn-success";
+            }
+        }
 
         // Get the current classroom and load the pdf
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
 
-            // Check if the user is the owner of the classroom, if not, redirect to pdfStudent
-            $scope.currentUserId = Auth.getCurrentUser()._id;
-            if ($scope.currentUserId != currentClassroom.creatorId) {
-                $window.location = "/pdfStudent?id=" + currentClassroom._id;
-            }
-
-            // Ask the teacher if he really wants to leave the room
-            //            window.onbeforeunload = function (event) {
-            //                if (!($location.search().id === undefined)) {
-            //                    var message = 'Are you sure you want to leave this page ?';
-            //                    if (typeof event == 'undefined') {
-            //                        event = window.event;
-            //                    }
-            //                    if (event) {
-            //                        event.returnValue = message;
-            //                    }
-            //                }
-            //                return message;
-            //            }
-
-            // When the teacher leaves, set isActive of the classroom to false
-            //            window.onunload = function (event) {
-            //                if (!($location.search().id === undefined)) {
-            //                    $http.put('/api/classrooms/' + $location.search().id, {
-            //                        isActive: false
-            //                    });
-            //                }
-            //            }
-
             $scope.currentClassroom = currentClassroom;
             $scope.url = "/assets/slides/" + currentClassroom.pdf;
+            $scope.isActive = currentClassroom.isActive;
+
+            $scope.updateButton();
+
+            $scope.deactivateClassroom = function () {
+                $scope.isActive = !$scope.isActive;
+                $scope.updateButton();
+                if (!($location.search().id === undefined)) {
+                    $http.put('/api/classrooms/' + $location.search().id, {
+                        isActive: $scope.isActive
+                    });
+                }
+            }
 
             var pdfDoc = null,
                 pageNum = 1,
@@ -159,15 +154,15 @@ angular.module('twebProject01App')
 
             // Synchronize the feedbacks
             socket.syncUpdates('feedback', $scope.feedbacks, function (event, feedback, feedbacks) {
-				if (feedback.classroomId == $location.search().id) {
-					if (feedback.number == 1) {
-						document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
-					} else if (feedback.number == 2) {
-						document.getElementById('perfect').textContent = feedbackCount[1] += 1;
-					} else if (feedback.number == 3) {
-						document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
-					}
-				}
+                if (feedback.classroomId == $location.search().id) {
+                    if (feedback.number == 1) {
+                        document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
+                    } else if (feedback.number == 2) {
+                        document.getElementById('perfect').textContent = feedbackCount[1] += 1;
+                    } else if (feedback.number == 3) {
+                        document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
+                    }
+                }
             });
 
         });
