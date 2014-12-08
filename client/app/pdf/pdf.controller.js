@@ -18,27 +18,27 @@ angular.module('twebProject01App')
             }
 
             // Ask the teacher if he really wants to leave the room
-            window.onbeforeunload = function (event) {
-                if (!($location.search().id === undefined)) {
-                    var message = 'Are you sure you want to leave this page ?';
-                    if (typeof event == 'undefined') {
-                        event = window.event;
-                    }
-                    if (event) {
-                        event.returnValue = message;
-                    }
-                }
-                return message;
-            }
+            //            window.onbeforeunload = function (event) {
+            //                if (!($location.search().id === undefined)) {
+            //                    var message = 'Are you sure you want to leave this page ?';
+            //                    if (typeof event == 'undefined') {
+            //                        event = window.event;
+            //                    }
+            //                    if (event) {
+            //                        event.returnValue = message;
+            //                    }
+            //                }
+            //                return message;
+            //            }
 
             // When the teacher leaves, set isActive of the classroom to false
-            window.onunload = function (event) {
-                if (!($location.search().id === undefined)) {
-                    $http.put('/api/classrooms/' + $location.search().id, {
-                        isActive: false
-                    });
-                }
-            }
+            //            window.onunload = function (event) {
+            //                if (!($location.search().id === undefined)) {
+            //                    $http.put('/api/classrooms/' + $location.search().id, {
+            //                        isActive: false
+            //                    });
+            //                }
+            //            }
 
             $scope.currentClassroom = currentClassroom;
             $scope.url = "/assets/slides/" + currentClassroom.pdf;
