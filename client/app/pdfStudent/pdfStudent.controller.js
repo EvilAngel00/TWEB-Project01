@@ -11,7 +11,7 @@ angular.module('twebProject01App')
         // Get the current classroom and load the pdf
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
             $scope.currentClassroom = currentClassroom;
-            $scope.url = "/assets/slides/" + currentClassroom.pdf;
+            $scope.url = currentClassroom.pdf;
 
             var pdfDoc = null,
                 pageNum = 1,

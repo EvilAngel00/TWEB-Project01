@@ -23,7 +23,7 @@ angular.module('twebProject01App')
         $http.get('/api/classrooms/' + $location.search().id).success(function (currentClassroom) {
 
             $scope.currentClassroom = currentClassroom;
-            $scope.url = "/assets/slides/" + currentClassroom.pdf;
+            $scope.url = currentClassroom.pdf;
             $scope.isActive = currentClassroom.isActive;
 
             $scope.updateButton();

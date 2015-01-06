@@ -20,21 +20,12 @@ header#banner.hero-unit
       input.form-control(type='text', placeholder='Name', ng-model='classroomName')
     
     br
-    
     .col-md-4
     div.col-md-4.input-group.input-group(ng-show='isLoggedIn()')
-      //span.input-group-addon Slides Name: 
-      //input.form-control(type='text', placeholder='Slides', ng-model='slidesPath')
-      table.table.table-hover
-        tr
-          th PDF Name
-          th Path
-        tr(ng-click="select(file)", ng-repeat='file in allFiles', ng-class="{active:file == selected}")
-          td  {{file.title}}
-          td  {{file.path}}
+      span.input-group-addon PDF Url: 
+      input.form-control(type='text', placeholder='http://www.example.com/slides.pdf', ng-model='classroomPDF')
       
     br
-    
     .col-md-4
     div.col-md-4(ng-show='isLoggedIn()')
       a.btn.btn-primary.btn-lg(href='/pdf', role='button', ng-click='addClassroom()') Create Classroom
