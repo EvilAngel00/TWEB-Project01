@@ -9,6 +9,8 @@ angular.module('twebProject01App')
         $scope.url = null;
         $scope.isActive;
 
+        console.log("Token: " + Auth.getToken());
+
         $scope.updateButton = function () {
             if ($scope.isActive) {
                 document.getElementById("activationButton").textContent = "Deactivate Classroom";

@@ -9,20 +9,20 @@ angular.module('twebProject01App')
         $http.get('/api/classrooms').success(function (allClassrooms) {
             $scope.allClassrooms = allClassrooms;
         });
-    
+
         function strEndsWith(str, suffix) {
-            return str.match(suffix+"$")==suffix;
+            return str.match(suffix + "$") == suffix;
         }
 
         $scope.addClassroom = function () {
 
             // If the user has not selected all fields, prompt and redirect.
-            if (this.classroomName === undefined || this.classroomPDF === undefined ) {
+            if (this.classroomName === undefined || this.classroomPDF === undefined) {
                 alert("Classroom name or pdf url empty !");
                 window.location.href = "/newclassroom";
                 return;
             }
-            
+
             /*if (strEndsWith(this.classroomPDF, ".pdf")) {
                 alert("URL doesn't end with '.pdf' !");
                 window.location.href = "/newclassroom";
@@ -35,14 +35,15 @@ angular.module('twebProject01App')
                 creator: Auth.getCurrentUser().name,
                 creatorId: Auth.getCurrentUser()._id,
                 pdf: this.classroomPDF,
-                isActive: true
+                isActive: true,
+                creatorToken: Auth.getToken()
             }).success(function (classroom) {
                 $window.location = "/pdf?id=" + classroom._id;
                 console.log(classroom);
             });
         };
-    
-        
+
+
         // When the user goes to the log in screen, add the origin to
         // redirect accordingly.
         $scope.login = function () {

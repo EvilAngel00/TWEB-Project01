@@ -1,0 +1,19 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+  .row
+      p.lead Your past lectures:
+     
+  div
+    table.table.table-hover
+      tr
+        th Name
+        th Creator
+        th PDF Name
+        th Token
+      tr(ng-repeat='classroom in allClassrooms | filter: {creatorToken: getToken()}')
+        td  
+          a(href='/pdfStudent?id={{classroom._id}}', ng-click='enterClassroom(classroom)') {{classroom.name}}
+        td {{classroom.creator}}
+        td {{classroom.pdf}}
+        td {{classroom.creatorToken}}
