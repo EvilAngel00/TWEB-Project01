@@ -8,7 +8,8 @@ var ClassroomSchema = new Schema({
   creator: String,
   creatorId: String,
   pdf: String,
-  isActive: Boolean
+  isActive: Boolean,
+  dateCreated: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model('Classroom', ClassroomSchema);

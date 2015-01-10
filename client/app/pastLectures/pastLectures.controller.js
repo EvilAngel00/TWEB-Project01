@@ -8,6 +8,7 @@ angular.module('twebProject01App')
         $scope.getToken = Auth.getToken;
 
         $scope.allClassrooms = [];
+        $scope.allAttendedLectures = [];
 
         // Get list of all classrooms. All active ones are filtered
         // in the jade file using the Angular.js filter directive.
@@ -15,11 +16,11 @@ angular.module('twebProject01App')
             $scope.allClassrooms = allClassrooms;
         });
 
-        // Classrooms are defined by their mongo id and 
-        // accessible by such in the url.
-        $scope.enterClassroom = function (classroom) {
-            $window.location = "/pdfStudent?id=" + classroom._id
-        };
+        $http.get('/api/attendedLectures').success(function (allAttendedLectures) {
+            $scope.allAttendedLectures = allAttendedLectures;
+            console.log($scope.allAttendedLectures);
+            console.log(Auth.getCurrentUser()._id);
+        });
 
         // (De)activate classroom through checkbox
         $scope.select = function (file) {
@@ -36,4 +37,13 @@ angular.module('twebProject01App')
             });
 
         }
+
+        $scope.getClassroomFromId = function (classroomId, attendedLecture) {
+            attendedLecture.classroomInfo = {};
+            $http.get('/api/classrooms/' + classroomId).success(function (classroom) {
+                attendedLecture.classroomInfo = classroom;
+                console.log(attendedLecture.classroomInfo);
+            });
+        }
+
     });

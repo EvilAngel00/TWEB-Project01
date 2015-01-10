@@ -10,24 +10,32 @@ angular.module('twebProject01App')
             $scope.allClassrooms = allClassrooms;
         });
 
-
+        Array.prototype.contains = function (userId, classroomId) {
+            var i = this.length;
+            while (i--) {
+                if (this[i].userId === userId && this[i].classroomId === classroomId) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         // Classrooms are defined by their mongo id and 
         // accessible by such in the url.
         $scope.enterClassroom = function (classroom) {
-            $scope.currentUser = [];
             $http.get('/api/users/' + Auth.getCurrentUser()._id).success(function (user) {
-                $scope.currentUser = user;
-                console.log($scope.currentUser);
-                console.log("Attended: " + $scope.currentUser.attendedLectures);
-                $scope.currentUser.attendedLectures.push(classroom);
-                console.log($scope.currentUser.attendedLectures);
+                $scope.alreadyAttendedLecture;
+                console.log(user);
 
-                $http.put('/api/users/' + $scope.currentUser._id, {
-                    attendedLectures: $scope.currentUser.attendedLectures
+                $http.get('/api/attendedLectures').success(function (allAttendedLectures) {
+                    if (!allAttendedLectures.contains(user._id, classroom._id)) {
+                        $http.post('/api/attendedLectures', {
+                            userId: user._id,
+                            classroomId: classroom._id
+                        });
+                    }
                 });
-                console.log($scope.currentUser);
-                //$window.location = "/pdfStudent?id=" + classroom._id
+
             });
         };
     });

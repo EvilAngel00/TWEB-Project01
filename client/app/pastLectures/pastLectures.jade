@@ -2,25 +2,25 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   .row
-      p.lead Your past lectures:
+      p.lead Your given lectures:
      
   div
     table.table.table-hover
       tr
         th Name
-        th Creator
         th PDF Name
         th Classroom active
+        th Date Created
       tr(ng-repeat='classroom in allClassrooms | filter: {creatorId: getCurrentUser()._id}')
         td  
-          a(href='/pdfStudent?id={{classroom._id}}', ng-click='enterClassroom(classroom)') {{classroom.name}}
-        td {{classroom.creator}}
+          a(href='/pdf?id={{classroom._id}}') {{classroom.name}}
         td {{classroom.pdf}}
         td 
-            input(type='checkbox', ng-model='classroom.isActive', ng-change='select(this)')    
+            input(type='checkbox', ng-model='classroom.isActive', ng-change='select(this)')   
+        td {{classroom.dateCreated | date:'dd MMM yyyy HH:mm:ss'}}    
 
   .row
-      p.lead Attended Lectures:
+      p.lead Your attended Lectures:
 
   div
     table.table.table-hover
@@ -29,10 +29,11 @@ div(ng-include='"components/navbar/navbar.html"')
         th Creator
         th PDF Name
         th Classroom active
-      tr(ng-repeat='classroom in allClassrooms | filter: {creatorId: getCurrentUser()._id}')
+        th Date attended
+      tr(ng-repeat='attendedLecture in allAttendedLectures | filter: {userId: getCurrentUser()._id}', ng-init='getClassroomFromId(attendedLecture.classroomId, attendedLecture)')
         td  
-          a(href='/pdfStudent?id={{classroom._id}}', ng-click='enterClassroom(classroom)') {{classroom.name}}
-        td {{classroom.creator}}
-        td {{classroom.pdf}}
-        td 
-            input(type='checkbox', ng-model='classroom.isActive', ng-change='select(this)')
+          a(href='/pdfStudent?id={{attendedLecture.classroomId}}') {{attendedLecture.classroomInfo.name}}
+        td {{attendedLecture.classroomInfo.creator}}
+        td {{attendedLecture.classroomInfo.pdf}}
+        td {{attendedLecture.classroomInfo.isActive}}
+        td {{attendedLecture.date | date:'dd MMM yyyy HH:mm:ss'}}     

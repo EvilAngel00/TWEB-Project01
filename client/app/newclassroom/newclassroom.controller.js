@@ -38,15 +38,7 @@ angular.module('twebProject01App')
                 isActive: true
             }).success(function (classroom) {
                 $window.location = "/pdf?id=" + classroom._id;
-                console.log(classroom);
             });
-        };
-
-
-        // When the user goes to the log in screen, add the origin to
-        // redirect accordingly.
-        $scope.login = function () {
-            $window.location = "/login?from=newclassroom";
         };
 
         // Retrieve currently selected file in table.

@@ -18,6 +18,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/attendedLecture/attendedLecture.socket').register(socket);
   require('../api/pdf/pdf.socket').register(socket);
   require('../api/feedback/feedback.socket').register(socket);
   require('../api/pageNumber/pageNumber.socket').register(socket);
