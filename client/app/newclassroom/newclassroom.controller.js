@@ -35,8 +35,7 @@ angular.module('twebProject01App')
                 creator: Auth.getCurrentUser().name,
                 creatorId: Auth.getCurrentUser()._id,
                 pdf: this.classroomPDF,
-                isActive: true,
-                creatorToken: Auth.getToken()
+                isActive: true
             }).success(function (classroom) {
                 $window.location = "/pdf?id=" + classroom._id;
                 console.log(classroom);

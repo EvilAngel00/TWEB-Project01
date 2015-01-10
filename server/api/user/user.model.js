@@ -18,8 +18,7 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {},
-  attendedLectures: {}
+  github: {}
 });
 
 /**
@@ -42,7 +41,7 @@ UserSchema
   .get(function() {
     return {
       'name': this.name,
-      'role': this.role
+      'role': this.role,
     };
   });
 

@@ -21,4 +21,19 @@ angular.module('twebProject01App')
             $window.location = "/pdfStudent?id=" + classroom._id
         };
 
+        // (De)activate classroom through checkbox
+        $scope.select = function (file) {
+            $scope.selected = [];
+            $http.get('/api/classrooms/' + file.classroom._id).success(function (classroom) {
+                $scope.selected = classroom;
+                $scope.isActive = !$scope.selected.isActive;
+
+                console.log($scope.selected);
+
+                $http.put('/api/classrooms/' + $scope.selected._id, {
+                    isActive: $scope.isActive
+                });
+            });
+
+        }
     });

@@ -10,10 +10,29 @@ div(ng-include='"components/navbar/navbar.html"')
         th Name
         th Creator
         th PDF Name
-        th Token
-      tr(ng-repeat='classroom in allClassrooms | filter: {creatorToken: getToken()}')
+        th Classroom active
+      tr(ng-repeat='classroom in allClassrooms | filter: {creatorId: getCurrentUser()._id}')
         td  
           a(href='/pdfStudent?id={{classroom._id}}', ng-click='enterClassroom(classroom)') {{classroom.name}}
         td {{classroom.creator}}
         td {{classroom.pdf}}
-        td {{classroom.creatorToken}}
+        td 
+            input(type='checkbox', ng-model='classroom.isActive', ng-change='select(this)')    
+
+  .row
+      p.lead Attended Lectures:
+
+  div
+    table.table.table-hover
+      tr
+        th Name
+        th Creator
+        th PDF Name
+        th Classroom active
+      tr(ng-repeat='classroom in allClassrooms | filter: {creatorId: getCurrentUser()._id}')
+        td  
+          a(href='/pdfStudent?id={{classroom._id}}', ng-click='enterClassroom(classroom)') {{classroom.name}}
+        td {{classroom.creator}}
+        td {{classroom.pdf}}
+        td 
+            input(type='checkbox', ng-model='classroom.isActive', ng-change='select(this)')
