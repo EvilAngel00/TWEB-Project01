@@ -13,7 +13,14 @@ header#banner.hero-unit(style='background:#6666CC')
       p Log in 
         a(href='/login?from=newclassroom') here.
 
-    
+    .col-md-4
+    div.col-md-4.panel.panel-default(ng-show='isLoggedIn()')
+      .panel-body
+        | Step 1: Choose a classroom name
+    br
+    br
+    br
+    br
     .col-md-4
     div.col-md-4.input-group.input-group(ng-show='isLoggedIn()')
       span.input-group-addon Classroom Name: 
@@ -22,7 +29,15 @@ header#banner.hero-unit(style='background:#6666CC')
     br
     br
     br
-    accordion(close-others='true', ng-show='isLoggedIn()')
+    .col-md-4
+    div.col-md-4.panel.panel-default(ng-show='isLoggedIn() && isNameFilled()')
+      .panel-body
+        | Step 2: Choose a PDF file
+    br
+    br
+    br
+    br
+    accordion(close-others='true', ng-show='isLoggedIn() && isNameFilled()')
       accordion-group
         accordion-heading
           | PDF File by URL 

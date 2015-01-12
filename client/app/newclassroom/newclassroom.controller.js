@@ -13,6 +13,10 @@ angular.module('twebProject01App')
 
         $scope.selected = {};
 
+        $scope.isNameFilled = function () {
+            return !(this.classroomName === undefined || this.classroomName == '');
+        };
+
         // Temporary workaround to choose between available PDF files.
         $http.get('/assets/slides/pdfFiles.json').then(function (allFiles) {
             $scope.allFiles = allFiles.data;
