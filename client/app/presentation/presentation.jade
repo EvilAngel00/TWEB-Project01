@@ -1,16 +1,16 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-header#banner.hero-unit
+header#banner.hero-unit(style='background:#6666CC')
   .container
-    h1 Live Classroom Presentations
-    p.lead Create or Join an existing classroom. 
+    img(src='assets/images/logo.png', alt='Live classroom logo')
+    p.lead Join an existing classroom
 
 .container
   .row
     .col-md-12
     h1.page-header
       p
-        a.btn.btn-primary.btn-lg(href='/newclassroom', role='button') Create New Classroom
+        a.btn.btn-primary.btn-lg(href='/newclassroom', role='button', style='background:#6666CC') Create New Classroom
       br    
       p.lead Join Existing Classroom:
      

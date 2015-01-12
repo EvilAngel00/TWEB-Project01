@@ -2,6 +2,9 @@
   div.row
     div.well.col-md-9
       center
+        div.col-md-2
+        div.col-md-2
+        div.col-md-4
           a.btn.btn-default.btn-sm#prev(ng-hide='sync') < Previous
           &nbsp;
           a.btn.btn-default.btn-sm#next(ng-hide='sync') Next >
@@ -13,7 +16,11 @@
             span#page_count
             &nbsp;
             input(type='checkbox', ng-model='sync', ng-change='syncUnsync()')
-            | Sync   
+            | Sync
+        div.col-md-2
+        div.col-md-2
+          center
+            a.btn.btn-primary.btn-default(href='/', role='button', style='background:#6666CC') Leave Classroom
       br
       center
         canvas#slides

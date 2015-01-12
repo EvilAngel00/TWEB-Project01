@@ -1,8 +1,8 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-header#banner.hero-unit
+header#banner.hero-unit(style='background:#6666CC')
   .container
-    h1 Live New Classroom
+    img(src='assets/images/logo.png', alt='Live classroom logo')
     p.lead Create A New Classroom 
 
 .container
@@ -36,7 +36,7 @@ header#banner.hero-unit
         br
         .col-md-4
         div.col-md-4
-          a.btn.btn-primary.btn-lg(href='/pdf', role='button', ng-click='addClassroomFromURL()') Create Classroom
+          a.btn.btn-primary.btn-lg(href='/pdf', role='button', ng-click='addClassroomFromURL()', style='background:#6666CC') Create Classroom
       accordion-group
         accordion-heading
           | Upload PDF to your AWS Bucket   
@@ -71,13 +71,13 @@ header#banner.hero-unit
                 .progress-bar(role='progressbar', aria-valuenow='{{ uploadProgress }}', aria-valuemin='0', aria-valuemax='100', style='width: {{ uploadProgress }}%;')
                   | {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
               br      
-              a.btn.btn-primary.btn-block.btn-lg(ng-click='upload()') Upload
+              a.btn.btn-primary.btn-block.btn-lg(ng-click='upload()', style='background:#6666CC') Upload
               
         .col-md-4
         div.col-md-4
           br
           br
-          a.btn.btn-primary.btn-lg(role='button', ng-click='addClassroomFromBucket()') Create Classroom  
+          a.btn.btn-primary.btn-lg(role='button', ng-click='addClassroomFromBucket()', style='background:#6666CC') Create Classroom  
       accordion-group
         accordion-heading
           | Choose from available PDF   
@@ -94,5 +94,5 @@ header#banner.hero-unit
         div.col-md-4
           br
           br
-          a.btn.btn-primary.btn-lg(role='button', ng-click='addClassroomFromAsset()') Create Classroom 
+          a.btn.btn-primary.btn-lg(role='button', ng-click='addClassroomFromAsset()', style='background:#6666CC') Create Classroom 
 
