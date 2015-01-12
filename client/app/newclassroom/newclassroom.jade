@@ -18,14 +18,68 @@ header#banner.hero-unit
     div.col-md-4.input-group.input-group(ng-show='isLoggedIn()')
       span.input-group-addon Classroom Name: 
       input.form-control(type='text', placeholder='Name', ng-model='classroomName')
-    
-    br
-    .col-md-4
-    div.col-md-4.input-group.input-group(ng-show='isLoggedIn()')
-      span.input-group-addon PDF Url: 
-      input.form-control(type='text', placeholder='http://www.example.com/slides.pdf', ng-model='classroomPDF')
       
     br
-    .col-md-4
-    div.col-md-4(ng-show='isLoggedIn()')
-      a.btn.btn-primary.btn-lg(href='/pdf', role='button', ng-click='addClassroom()') Create Classroom
+    br
+    br
+    accordion(close-others='true', ng-show='isLoggedIn()')
+      accordion-group
+        accordion-heading
+          | PDF File by URL  
+          i.pull-down.glyphicon(ng-class="{'glyphicon-chevron-down': true}")
+        br
+        .col-md-4
+        div.col-md-4.input-group.input-group(ng-show='isLoggedIn()')
+          span.input-group-addon PDF Url: 
+          input.form-control(type='text', placeholder='http://www.example.com/slides.pdf', ng-model='classroomPDF')
+
+        br
+        .col-md-4
+        div.col-md-4(ng-show='isLoggedIn()')
+          a.btn.btn-primary.btn-lg(href='/pdf', role='button', ng-click='addClassroom()') Create Classroom
+      accordion-group
+        accordion-heading
+          | Upload PDF to your AWS Bucket  
+          i.pull-down.glyphicon(ng-class="{'glyphicon-chevron-down': true}")
+        // AWS Details
+        .col-md-4
+          .panel.panel-default
+            .panel-heading
+              h3.panel-title Step 1: Input Your AWS Details
+            .panel-body
+              .input-group.bottom-marg-10
+                span.input-group-addon ACCESS KEY
+                input.form-control(ng-model='creds.access_key', type='text', placeholder='2992SD29299')
+              .input-group.bottom-marg-10
+                span.input-group-addon SECRET KEY
+                input.form-control(ng-model='creds.secret_key', type='text', placeholder='AKS72628SE28')
+              .input-group
+                span.input-group-addon BUCKET
+                input.form-control(ng-model='creds.bucket', type='text', placeholder='my_upload_bucket')
+        // The Upload Form
+        .col-md-8
+          .panel.panel-default
+            .panel-heading
+              select.fr(ng-model='sizeLimit')
+                option(value='5292880') 5MB Upload Limit
+                option(value='10585760') 10MB Upload Limit
+                option(value='15878640') 15MB Upload Limit
+              h3.panel-title Step 2: Upload The File
+            .panel-body
+              input.bottom-marg-15(type='file', data-ng-file-select="onFileSelect($files)", name='file', file='')
+              // Progress Bar
+              .progress
+                .progress-bar(role='progressbar', aria-valuenow='{{ uploadProgress }}', aria-valuemin='0', aria-valuemax='100', style='width: {{ uploadProgress }}%;')
+                  | {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
+              a.btn.btn-primary.btn-block.btn-lg(ng-click='upload()') Upload
+      accordion-group(heading='Lili')
+        | Lili
+      accordion-group(heading='Lolo')
+        | This is just some content to illustrate fancy headings.
+      accordion-group
+        accordion-heading
+          | I can have markup, too! 
+          i.pull-down.glyphicon(ng-class="{'glyphicon-chevron-down': true}")
+        |         This is just some content to illustrate fancy headings.
+
+
