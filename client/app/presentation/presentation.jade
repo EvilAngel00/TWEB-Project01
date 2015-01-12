@@ -15,12 +15,15 @@ header#banner.hero-unit(style='background:#6666CC')
       p.lead Join Existing Classroom:
      
   div
+    input(type='text', ng-model='search', placeholder=' Search')
+    br
+    br
     table.table.table-hover
       tr
         th Name
         th Creator
         th PDF Name
-      tr(ng-repeat='classroom in allClassrooms | filter: {isActive: true}')
+      tr(ng-repeat='classroom in allClassrooms | filter: {isActive: true} | filter: search')
         td  
           a(href='/pdfStudent?id={{classroom._id}}', ng-click='enterClassroom(classroom)') {{classroom.name}}
         td {{classroom.creator}}
