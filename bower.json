@@ -16,8 +16,8 @@
     "angular-socket-io": "~0.6.0",
     "angular-ui-router": "~0.2.10",
     "pdfjs-dist": "~1.0.931",
-    "angular-upload": "~1.0.11",
-    "angular-file-uploader": "~1.0.0",
+    "ng-file-upload": "~1.6.12",
+    "ng-file-upload-shim": "~1.6.12",
     "aws-sdk-js": "~2.1.2",
     "toastr": "2.1.0"
   },

@@ -5,7 +5,18 @@ angular.module('twebProject01App')
         $scope.isLoggedIn = Auth.isLoggedIn;
 
         $scope.allClassrooms = [];
-        $scope.selectedFile = '';
+
+        $scope.creds = {};
+        $scope.uniqueFileName = '';
+
+        $scope.allFiles = [];
+
+        $scope.selected = {};
+
+        // Temporary workaround to choose between available PDF files.
+        $http.get('/assets/slides/pdfFiles.json').then(function (allFiles) {
+            $scope.allFiles = allFiles.data;
+        });
 
         $http.get('/api/classrooms').success(function (allClassrooms) {
             $scope.allClassrooms = allClassrooms;
@@ -15,20 +26,14 @@ angular.module('twebProject01App')
             return str.match(suffix + "$") == suffix;
         }
 
-        $scope.addClassroom = function () {
+        $scope.addClassroomFromURL = function () {
 
             // If the user has not selected all fields, prompt and redirect.
             if (this.classroomName === undefined || this.classroomPDF === undefined) {
                 alert("Classroom name or pdf url empty !");
                 window.location.href = "/newclassroom";
-                return;
+                return false;
             }
-
-            /*if (strEndsWith(this.classroomPDF, ".pdf")) {
-                alert("URL doesn't end with '.pdf' !");
-                window.location.href = "/newclassroom";
-                return;
-            }*/
 
             // Add classroom to DB with given inputs.
             $http.post('/api/classrooms', {
@@ -42,27 +47,56 @@ angular.module('twebProject01App')
             });
         };
 
+        $scope.addClassroomFromBucket = function () {
+
+            $http.post('/api/classrooms', {
+                name: this.classroomName,
+                creator: Auth.getCurrentUser().name,
+                creatorId: Auth.getCurrentUser()._id,
+                pdf: "https://s3-eu-west-1.amazonaws.com/" + $scope.creds.bucket + "/" + $scope.uniqueFileName,
+                isActive: true
+            }).success(function (classroom) {
+                $window.location = "/pdf?id=" + classroom._id;
+            });
+        };
+
+        $scope.addClassroomFromAsset = function () {
+
+            // If the user has not selected all fields, prompt and redirect.
+            if (this.classroomName === undefined) {
+                alert("Classroom name empty !");
+                window.location.href = "/newclassroom";
+                return;
+            }
+
+
+            // Add classroom to DB with given inputs.
+            $http.post('/api/classrooms', {
+                name: this.classroomName,
+                creator: Auth.getCurrentUser().name,
+                creatorId: Auth.getCurrentUser()._id,
+                pdf: "/assets/slides/" + $scope.selected.path,
+
+                isActive: true
+            }).success(function (classroom) {
+                $window.location = "/pdf?id=" + classroom._id;
+                console.log(classroom);
+            });
+        };
+
+
         // Retrieve currently selected file in table.
         $scope.select = function (file) {
             $scope.selected = file;
             console.log($scope.selected.path);
         }
 
-        $scope.onFileSelect = function (files) {
-            console.log("Hello");
-            var file = '';
-            if (angular.isArray(files)) {
-                file = files[0];
-            }
-
-            $scope.selectedFile = file;
-            console.log($scope.selectedFile);
-
-        };
+        $scope.onFileSelect = function ($files) {
+            $scope.file = $files.files[0];
+        }
 
         $scope.sizeLimit = 10585760; // 10MB in Bytes
         $scope.uploadProgress = 0;
-        $scope.creds = {};
 
         $scope.upload = function () {
             AWS.config.update({
@@ -85,10 +119,10 @@ angular.module('twebProject01App')
                     return false;
                 }
                 // Prepend Unique String To Prevent Overwrites
-                var uniqueFileName = $scope.uniqueString() + '-' + $scope.file.name;
+                $scope.uniqueFileName = $scope.uniqueString() + '-' + $scope.file.name;
 
                 var params = {
-                    Key: uniqueFileName,
+                    Key: $scope.uniqueFileName,
                     ContentType: $scope.file.type,
                     Body: $scope.file,
                     ServerSideEncryption: 'AES256'
