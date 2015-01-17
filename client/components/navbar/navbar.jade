@@ -6,7 +6,7 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') Live Classroom
+      a.navbar-brand(href='/') Live Classrooms
 
     div#navbar-main.navbar-collapse.collapse(collapse='isCollapsed')
       ul.nav.navbar-nav
@@ -15,6 +15,9 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
           
         li(ng-show='isLoggedIn()', ng-class'{active: isActive("/pastLectures")}')
           a(href='/pastLectures') Past Lectures
+          
+        li(ng-class'{active: isActive("/about")}')
+          a(href='/about') Help 
 
         li(ng-show='isAdmin()', ng-class='{active: isActive("/admin")}')
           a(href='/admin') Admin

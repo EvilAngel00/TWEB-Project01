@@ -1,11 +1,64 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.col-md-12
-    | This is the about view.
-    | out of the angular $scope: {{message}} {{counter}}
-    .p
-        .btn.btn-primary(ng-click='increment()') Add
-        .btn.btn-primary(ng-click='reset()') Reset
-        input.form-control(ng-model='incParam', type='number')
-    .p
-        The counter is {{counter}}
+header#banner.hero-unit(style='background:#6666CC')
+  .container
+    img(src='assets/images/logo.png', alt='Live classroom logo')
+    p.lead Help
+
+.container
+  .row
+    .col-md-12
+        br
+        accordion
+          accordion-group
+            accordion-heading
+              | How do I create my classroom ? 
+              i.pull-down.glyphicon(ng-class="{'glyphicon-chevron-down': true}")
+            .col-md-12
+              | Head on to the 
+              a(href='/newclassroom') New Classroom 
+              | page. 
+              | Just give a name and several choices to choose your PDF lecture will be offered :
+              p 
+              p
+                | 1. Give the URL of the PDF slide deck. The remote origin must be 
+                a(href='http://en.wikipedia.org/wiki/Cross-origin_resource_sharing') CORS enabled.
+              p
+                | 2. Upload a local file directly to your 
+                a(href='http://aws.amazon.com/') AWS account.
+                | This method requires you to enable CORS on your bucket as well.
+              p
+                | 3. Choose from a sample of slide decks.
+
+          accordion-group
+            accordion-heading
+              | How do I join a classroom ? 
+              i.pull-down.glyphicon(ng-class="{'glyphicon-chevron-down': true}")
+            .col-md-12
+              | You can perform a search on the 
+              a(href='/presentation') main page
+              |  in order to find the desired classroom. The search function filters by name
+              | of the classroom, name of its creator as well as name of the slides being used (most likely the URL).
+              
+          accordion-group
+            accordion-heading
+              | How do I manage my classrooms ? 
+              i.pull-down.glyphicon(ng-class="{'glyphicon-chevron-down': true}")
+            .col-md-12
+              | Once you're logged in, you'll be able to access the 
+              a(href='/pastLectures') Past Lectures
+              |  page.
+              p
+              | From there, you can manage your created lectures as well as your attended ones.
+              
+          accordion-group
+            accordion-heading
+              | About Live Classrooms 
+              i.pull-down.glyphicon(ng-class="{'glyphicon-chevron-down': true}")
+            .col-md-12
+              | Live Classrooms was developped by Rui Reis and Frédéric Saam as part of a semestrial project 
+              | for the course Technologies Web (TWEB) at HEIG-VD.
+              p
+              | Feel free to check our 
+              a(href='https://github.com/EvilAngel00/TWEB-Project01') Github repo
+              |  out.

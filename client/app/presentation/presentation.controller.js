@@ -2,6 +2,9 @@
 
 angular.module('twebProject01App')
     .controller('PresentationCtrl', function ($scope, $http, $window, Auth) {
+
+        $scope.isLoggedIn = Auth.isLoggedIn;
+
         $scope.allClassrooms = [];
 
         // Get list of all classrooms. All active ones are filtered

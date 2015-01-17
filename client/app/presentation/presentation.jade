@@ -5,7 +5,15 @@ header#banner.hero-unit(style='background:#6666CC')
     img(src='assets/images/logo.png', alt='Live classroom logo')
     p.lead Join an existing classroom
 
-.container
+.container(ng-hide='isLoggedIn()')
+  .row
+    br
+    div.alert.alert-danger(role='alert')
+      p.lead You are not logged in !
+      p Log in 
+        a(href='/login?from=presentation') here.
+
+.container(ng-show='isLoggedIn()')
   .row
     .col-md-12
     h1.page-header
