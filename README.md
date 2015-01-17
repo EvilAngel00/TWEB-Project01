@@ -4,7 +4,9 @@ Repository for Rui Reis and Frédéric Saam
 
 Heroku app: http://fast-hamlet-3168.herokuapp.com/
 
-##Project Presentation 
+Landing page: http://evilangel00.github.io/
+
+## Project Presentation 
 
 This project allows people to create or follow PDF presentations with live feedback.
 
@@ -12,11 +14,10 @@ Everyone can create a classroom that people can join in 2 clicks.
 
 People can join by simply clicking the classroom in the main page.
 
-
-##Features
+## Features
 
 O: Working  
-X: Not Yet Implemented
+X: Not Implemented
 
 |     Teacher     | Local | Heroku |
 |:---------------:|:-----:|:------:|
@@ -34,8 +35,8 @@ X: Not Yet Implemented
 
 |       Common to Both      |  Local  |  Heroku  |
 |:-------------------------:|:-------:|:--------:|
-| Explore Archives          |    X    |     X    |
-| List of Past Lectures     |    X    |     X    |
+| Explore Archives          |    O    |     O    |
+| List of Past Lectures     |    O    |     O    |
 | Access Past Lecture Stats |    X    |     X    |
 
 |      Admin      |  Local  |  Heroku  |
@@ -44,29 +45,25 @@ X: Not Yet Implemented
 | Admin Dashboard |    X    |     X    |
 
 
-##TODO
+## Possible future developpements
 * Automatic refresh of active classes in main page.
 * Allow public / private classes with password.
 	* Allow access to classromm with personnalized id and / or name.
-* Update overall UI.
 * Upload PDF files with public / private option.
 * Access public uploaded files.
 * Access files uploaded by logged user.
 * Detect if file already exists in database to avoid unnecessary redundancy (metadata ?).
-* Better management of users and redirections.
 * Fullscreen + mouse support during PDF presentation.
 * Chat filtering for teachers (deletion of messages, censorship).
-* Access past given lectures and past attended lectures.
-	* This can help rejoining a classroom in case of unexpected exit.
 
-##Known Issues and Possible Workarounds
-* When a teacher leaves a page (by clicking yes when prompted), the classroom should become inactive. 
-	* This works as intended locally but not in Heroku.
-	* Possibly change how a room becomes inactive by giving the possibilty to the creator/teacher to dismiss the class.
-	* User dashboard with past lectures and possibility to change status (active / inactive).
+## Known Issues and Possible Workarounds
 * Page resizing is not dynamic, several visual glitches depending on resolution / browser zoom.
-* If someone tries to access a teacher page without being the creator, he should be redirected to the student page.
-	* Redirection not working with Chrome but working with Firefox.
-	* The browser prompt for exiting the page causes a problem.
 * Huge code duplication between teacher and student PDF pages.
 	* Merge is possible by detecting room creator and using ng-show / ng-hide.
+
+## Additions since Part 1
+* Colour scheme change.
+* Overall revamp of redirections and general flow of the application.
+* S3 upload.
+* Past Lectures page allowing centralized and efficient management of created lectures.
+* [Landing page](http://evilangel00.github.io)
