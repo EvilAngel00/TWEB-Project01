@@ -72,6 +72,18 @@ angular.module('twebProject01App')
                 event.preventDefault();
             };
 
+            function fullscreen() {
+                var el = document.getElementById('slides');
+
+                if (el.webkitRequestFullScreen) {
+                    el.webkitRequestFullScreen();
+                } else {
+                    el.mozRequestFullScreen();
+                }
+            }
+
+            document.getElementById('fullscreen').addEventListener("click", fullscreen)
+
             /**
              * Get page info from document, resize canvas accordingly, and render page.
              * @param num Page number.

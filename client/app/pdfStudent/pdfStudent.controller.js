@@ -51,6 +51,20 @@ angular.module('twebProject01App')
                 event.preventDefault();
             };
 
+            document.getElementById('slides').addEventListener('click', onNextPage);
+
+            function fullscreen() {
+                var el = document.getElementById('slides');
+
+                if (el.webkitRequestFullScreen) {
+                    el.webkitRequestFullScreen();
+                } else {
+                    el.mozRequestFullScreen();
+                }
+            }
+
+            document.getElementById('fullscreen').addEventListener("click", fullscreen)
+
             /**
              * Get page info from document, resize canvas accordingly, and render page.
              * @param num Page number.
@@ -102,11 +116,13 @@ angular.module('twebProject01App')
              * Displays previous page.
              */
             function onPrevPage() {
-                if (pageNum <= 1) {
-                    return;
+                if (!$scope.sync) {
+                    if (pageNum <= 1) {
+                        return;
+                    }
+                    pageNum--;
+                    queueRenderPage(pageNum);
                 }
-                pageNum--;
-                queueRenderPage(pageNum);
             }
             document.getElementById('prev').addEventListener('click', onPrevPage);
 
