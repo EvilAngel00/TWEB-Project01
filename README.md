@@ -1,4 +1,6 @@
-#TWEB-Project01
+![Live Classrooms Logo](/client/assets/images/logo.png)
+
+# Live Classrooms
 
 Repository for Rui Reis and Frédéric Saam
 
