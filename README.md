@@ -50,18 +50,19 @@ X: Not Implemented
 ## Possible future developpements
 * Automatic refresh of active classes in main page.
 * Allow public / private classes with password.
-	* Allow access to classromm with personnalized id and / or name.
+	* Allow access to classroom with personnalized id and / or name.
 * Upload PDF files with public / private option.
 * Access public uploaded files.
 * Access files uploaded by logged user.
 * Detect if file already exists in database to avoid unnecessary redundancy (metadata ?).
-* Fullscreen + mouse support during PDF presentation.
 * Chat filtering for teachers (deletion of messages, censorship).
 
 ## Known Issues and Possible Workarounds
 * Page resizing is not dynamic, several visual glitches depending on resolution / browser zoom.
 * Huge code duplication between teacher and student PDF pages.
 	* Merge is possible by detecting room creator and using ng-show / ng-hide.
+* Full screen is not exactly full screen.
+	* Pages have to be re-rendered to fit the screen.
 
 ## Additions since Part 1
 * Colour scheme change.
@@ -69,3 +70,4 @@ X: Not Implemented
 * S3 upload.
 * Past Lectures page allowing centralized and efficient management of created lectures.
 * [Landing page](http://evilangel00.github.io)
+* Fullscreen + mouse and keyboard keys support during PDF presentation.
