@@ -46,6 +46,32 @@ angular.module('twebProject01App')
                 canvas = document.getElementById('slides'),
                 ctx = canvas.getContext('2d');
 
+            // Control PDF with arrow keys
+            document.onkeydown = function (event) {
+                if (!event)
+                    event = window.event;
+                var code = event.keyCode;
+                if (event.charCode && code == 0)
+                    code = event.charCode;
+                switch (code) {
+                case 37:
+                    // Key left.
+                    onPrevPage();
+                    break;
+                case 38:
+                    // Key up.
+                    break;
+                case 39:
+                    // Key right.
+                    onNextPage();
+                    break;
+                case 40:
+                    // Key down.
+                    break;
+                }
+                event.preventDefault();
+            };
+
             /**
              * Get page info from document, resize canvas accordingly, and render page.
              * @param num Page number.
@@ -128,6 +154,7 @@ angular.module('twebProject01App')
                 });
             }
             document.getElementById('next').addEventListener('click', onNextPage);
+            document.getElementById('slides').addEventListener('click', onNextPage);
 
             /**
              * Asynchronously downloads PDF.

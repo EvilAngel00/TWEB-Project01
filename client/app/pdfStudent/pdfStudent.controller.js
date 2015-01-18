@@ -21,6 +21,36 @@ angular.module('twebProject01App')
                 canvas = document.getElementById('slides'),
                 ctx = canvas.getContext('2d');
 
+
+            document.onkeydown = function (event) {
+                if (!event)
+                    event = window.event;
+                var code = event.keyCode;
+                if (event.charCode && code == 0)
+                    code = event.charCode;
+                switch (code) {
+                case 37:
+                    // Key left.
+                    console.log("LEFT");
+                    onPrevPage();
+                    break;
+                case 38:
+                    // Key up.
+                    console.log("UP");
+                    break;
+                case 39:
+                    // Key right.
+                    console.log("RIGHT");
+                    onNextPage();
+                    break;
+                case 40:
+                    // Key down.
+                    console.log("DOWN");
+                    break;
+                }
+                event.preventDefault();
+            };
+
             /**
              * Get page info from document, resize canvas accordingly, and render page.
              * @param num Page number.
@@ -84,13 +114,16 @@ angular.module('twebProject01App')
              * Displays next page.
              */
             function onNextPage() {
-                if (pageNum >= pdfDoc.numPages) {
-                    return;
+                if (!$scope.sync) {
+                    if (pageNum >= pdfDoc.numPages) {
+                        return;
+                    }
+                    pageNum++;
+                    queueRenderPage(pageNum);
                 }
-                pageNum++;
-                queueRenderPage(pageNum);
             }
             document.getElementById('next').addEventListener('click', onNextPage);
+            document.getElementById('slides').addEventListener('click', onNextPage);
 
             /**
              * Asynchronously downloads PDF.
@@ -153,15 +186,15 @@ angular.module('twebProject01App')
 
             // Synchronize the feedbacks
             socket.syncUpdates('feedback', $scope.feedbacks, function (event, feedback, feedbacks) {
-				if (feedback.classroomId == $location.search().id) {
-					if (feedback.number == 1) {
-						document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
-					} else if (feedback.number == 2) {
-						document.getElementById('perfect').textContent = feedbackCount[1] += 1;
-					} else if (feedback.number == 3) {
-						document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
-					}
-				}
+                if (feedback.classroomId == $location.search().id) {
+                    if (feedback.number == 1) {
+                        document.getElementById('tooQuick').textContent = feedbackCount[0] += 1;
+                    } else if (feedback.number == 2) {
+                        document.getElementById('perfect').textContent = feedbackCount[1] += 1;
+                    } else if (feedback.number == 3) {
+                        document.getElementById('tooSlow').textContent = feedbackCount[2] += 1;
+                    }
+                }
             });
         });
     });
