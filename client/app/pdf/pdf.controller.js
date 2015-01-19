@@ -69,7 +69,6 @@ angular.module('twebProject01App')
                     // Key down.
                     break;
                 }
-                event.preventDefault();
             };
 
             function fullscreen() {

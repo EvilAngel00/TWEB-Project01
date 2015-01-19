@@ -5,8 +5,6 @@ angular.module('twebProject01App')
         $scope.user = {};
         $scope.errors = {};
 
-        document.onkeydown = null;
-
         $scope.register = function (form) {
             $scope.submitted = true;
 

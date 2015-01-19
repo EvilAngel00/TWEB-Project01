@@ -48,7 +48,6 @@ angular.module('twebProject01App')
                     console.log("DOWN");
                     break;
                 }
-                event.preventDefault();
             };
 
             document.getElementById('slides').addEventListener('click', onNextPage);

@@ -7,8 +7,6 @@ angular.module('twebProject01App')
 
         $scope.allClassrooms = [];
 
-        document.onkeydown = null;
-
         // Get list of all classrooms. All active ones are filtered
         // in the jade file using the Angular.js filter directive.
         $http.get('/api/classrooms').success(function (allClassrooms) {
