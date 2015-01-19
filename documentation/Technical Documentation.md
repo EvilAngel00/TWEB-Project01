@@ -65,6 +65,18 @@ Result:
 
 #### Dependency injection
 
+Angular services are accessible through dependency injection in the controller. There are several ways to declare a dependency in an Angular controller but throughout the project we mostly used implicit annotation:
+
+	someModule.controller('MyController', function($scope, myDependency) {
+	  // ...
+	});
+
+Several services are provided by Angular, such as `$http` that handles common operations in web apps, but the user can specify his own services using a **service factory function**.
+
+By using an implicit annotation, the injector will look for a service with a matching name:
+
+![](img/angular_dependency_injection.png)
+
 
 ### Node.js
 Rui
