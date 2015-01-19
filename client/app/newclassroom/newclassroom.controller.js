@@ -17,6 +17,8 @@ angular.module('twebProject01App')
             return !(this.classroomName === undefined || this.classroomName == '');
         };
 
+        document.onkeydown = null;
+
         // Temporary workaround to choose between available PDF files.
         $http.get('/assets/slides/pdfFiles.json').then(function (allFiles) {
             $scope.allFiles = allFiles.data;
