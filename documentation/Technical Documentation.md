@@ -60,6 +60,8 @@ This is a task runner, in other words, it automates all the building tasks in or
 
 Grunt in itself performs several tasks like minifying and testing the application’s code before running it. Here you can see the Grunt’s build pipeline:
 
+![](img/grunt.png)
+
 ### Bower and Node Package Manager (NPM)
 Both of them are package managers. Those tools are made automate the process of installing, upgrading, configuring and removing packages.
 
