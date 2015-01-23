@@ -202,19 +202,33 @@ Every message, page change or feedback that is sent is persisted in a database f
 
 ### Persistence ([MongoDB](http://www.mongodb.org/)) <a href="http://www.mongodb.org/"><img src="img/logos/mongodb.png" height="48" width="164" ></a>
 
-Rui
+MongoDB is a document-oriented database (referred to as a NoSQL database). It manages JSON-like objects with dynamic schemas allowing an easier and faster management of data compared to traditional relational databases.
+
+MongoDB aggregates data under the form of *collections* of similar objects which can then be retrieved easily through simple queries.
+
+Within the context of our project, we manipulate JSON data that can be persisted through MongoDB.
+
+#### [Mongoose](http://mongoosejs.com/)
+
+Our project is written in Javascript and Mongoose is a plug-in used with Node.js which allows us to easily perform CRUD operations on our database. The Angular-Fullstack generator delivers us a fully functional architecture with a connection to a database and a very simple generation of collections through the creation of *endpoints*.
+
+On top of that, we can use AngularJS directives such as `$http.get()` and `$http.post()` that use Mongoose as middleware to perform CRUD operations.
 
 ### [Amazon S3](http://aws.amazon.com/s3/) <a href="http://aws.amazon.com/s3/"><img src="img/logos/awss3.png" height="48" width="192" ></a>
 
-Rui
+Amazon S3 (Simple Storage Service) is one of the tools provided by Amazon Web Services (AWS) which offers a secure storage space on the cloud. We suggest to use this platform to upload and access PDF documents because the user can manually activate [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) which allows our application to data stored in remote locations.
 
 ### [Heroku](https://www.heroku.com) <a href="https://www.heroku.com"><img src="img/logos/heroku.png" height="48" width="153" ></a>
 
-Rui
+Heroku is a cloud platform as a service (PaaS). It supports Node.js among other programming languages. It lets developers deploy and host applications through git.
 
-### [Github](https://github.com/) <a href="https://github.com/"><img src="img/logos/github.png" height="48" width="51" ></a>
+We use this service to host our application on the web and making it publicly accessible.
 
-Rui
+### [GitHub](https://github.com/) <a href="https://github.com/"><img src="img/logos/github.png" height="48" width="51" ></a>
+
+GitHub is web-based [Git](http://git-scm.com/) repository service. Git is a version control system designed to  efficiently handle collaborative projects.
+
+Our whole project is open-source and accessible through GitHub [here](https://github.com/EvilAngel00/TWEB-Project01).
 
 ## Sequence diagram
 Fréd & Rui
