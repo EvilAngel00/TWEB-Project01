@@ -82,6 +82,8 @@ In this chapter, we will present all the technologies that are used around the p
 
 Javascript is a dynamic programming language mostly used in web applications. Its implementation allows client-side scripts to interact with the user, control the browser, communicate asynchronously and alter the content that is displayed.
 
+We used Javascript coupled with AngularJS for every aspect of our application.
+
 ### [AngularJS](https://angularjs.org/) <a href="https://angularjs.org/"><img src="img/logos/angularjs.png" height="72" width="72" ></a>
 
 AngularJS is a framework for Javascript adding a whole dynamic environment to HTML page declaration.
@@ -138,7 +140,27 @@ By using an implicit annotation, the injector will look for a service with a mat
 
 ### [Node.js](http://nodejs.org/) <a href="http://nodejs.org/"><img src="img/logos/nodejs.png" height="48" width="127" ></a>
 
-Rui
+Node.js is a server-side runtime environment based on an event-driven architecture. It provides a non-blocking I/O API that optimized an application throughput and scalability. It is mostly used for real-time web applications.
+
+It used several times in our implementation :
+
+ * Environment configuration on the server side : in the `server/config/environment/` folder. It configures the communication with the database and how the users are managed.
+ *  Authentication : the node middleware also manages authentication of users when required. The generator provides OAuth support with several services such as Facebook, Twitter and Google+ but we didn't use these.
+
+#### Event Loop
+
+Node.js is single threaded but uses what we call an *event loop* to perform asynchronous I/O operations. Every I/O uses a callback that doesn't interrupt the code. As the cost of an I/O can vary and sometimes be extremely long, this assures that things still run smoothly. 
+
+So how does this *event loop* work ?
+
+Javascript runtimes contain a message queue which stores a list of messages to be processed and their associated callback functions. These messages are queued in response to external events (such as a mouse being clicked or receiving the response to an HTTP request) given a callback function has been provided. If, for example a user were to click a button and no callback function was provided – no message would have been enqueued.
+
+In a loop, the queue is polled for the next message (each poll referred to as a “tick”) and when a message is encountered, the callback for that message is executed.
+
+(Source: http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/)
+
+![](img/eventloop.png)
+
 
 ### [Socket.io](http://socket.io/) <a href="http://nodejs.org/"><img src="img/logos/socketio.png" height="48" width="146" ></a>
 
