@@ -164,7 +164,41 @@ In a loop, the queue is polled for the next message (each poll referred to as a 
 
 ### [Socket.io](http://socket.io/) <a href="http://nodejs.org/"><img src="img/logos/socketio.png" height="48" width="146" ></a>
 
-Rui
+Socket.io is a library allowing to do a very simple real-time communication using several techniques. The most used is [WebSocket](http://en.wikipedia.org/wiki/WebSocket) but Socket.io can fallback to others techniques when needed.
+
+WebSocket opens a dual channel between the client and the server allowing the server itself to send messages to the client without necessarily having been polled prior.
+
+The code is divided into two parts :
+
+ * Server side : The server accepts messages and connections and the associated behavior is executed
+	
+		// Load socket.io
+		var io = require('socket.io').listen(server);
+		
+		// When a client connects, we can send a confirmation through a message
+		io.sockets.on('connection', function (socket) {
+		    socket.emit('message', 'You are now connected !');
+		});
+
+ * Client side : 
+	 
+		// Connection to the server
+		var socket = io.connect('http://localhost:8080');
+		
+		// The client receives a message from the server
+		socket.on('message', function(message) {
+		    alert('The server sent : ' + message);
+		})
+
+Of course, the advantage of Socket.io is to be able broadcast to multiple clients. This is achieved by using :
+
+	socket.on('message', function (message) {
+			socket.broadcast.emit('message', message);
+	});
+
+The type of communication is used in our application for different purposes. The chat was built using this library, the synchronization of page changes between a teachers and the students as well and finally the reception of real-time feedback by the teacher.
+
+Every message, page change or feedback that is sent is persisted in a database for coherence as well as subsequent access.
 
 ### Persistence ([MongoDB](http://www.mongodb.org/)) <a href="http://www.mongodb.org/"><img src="img/logos/mongodb.png" height="48" width="164" ></a>
 
