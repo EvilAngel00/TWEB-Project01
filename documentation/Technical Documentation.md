@@ -7,13 +7,18 @@ Firstly, we will go through the process in which we created the skeleton of the 
 Secondly, we will talk about the frameworks and technologies used in order to develop our functionalities.
 
 ## Technologies used to build the project aka Scaffolding
+
 In this section, we will describe the tools we used to create and work on the project.
-### Yeoman
+
+### [Yeoman](http://yeoman.io/) <a href="http://yeoman.io/"><img src="img/logos/yeoman.png" height="72" width="72" ></a>
+
 Yeoman is a scaffolding tool. In other words, it helps us to create a base for a new project. It uses different generators (working as plug-in) to make a skeleton that already contains things like users management, REST API and client interface, depending on the chosen generator. In this project, we used the Angular-Fullstack generator.
-### Angular-Fullstack
+
+### [Angular-Fullstack](https://github.com/DaftMonk/generator-angular-fullstack)
+
 (Schemas under this section comes from the official angular-fullstack page on github : https://github.com/DaftMonk/generator-angular-fullstack)
 
-This is one of the generators that Yeoman can use. By typing “yo angular-fullstack [app-name]” in the command prompt, you will create a new project that looks like this:
+This is one of the generators that Yeoman can use. By typing `yo angular-fullstack [app-name]` in the command prompt, you will create a new project that looks like this:
 
     ├── client
     │   ├── app                 - All of our app specific components go in here
@@ -40,7 +45,7 @@ On the client side, we can see that there already is an “app” section. This 
     ├── main.html               - View
     └── main.less               - Styles
 
-You can generate a new route by typing the command “yo angular-fullstack:route [route-name]”.
+You can generate a new route by typing the command `yo angular-fullstack:route [route-name]`.
 
 On the server side, there is an “api” section. This section contains a functional REST API and each directory is a different endpoint. Here you can see an example of directory content under the server/api section:
 
@@ -51,29 +56,33 @@ On the server side, there is an “api” section. This section contains a funct
     ├── thing.socket.js         - Register socket events
     └── thing.spec.js           - Test
     
-You can generate a new endpoint by typing the command “yo angular-fullstack:endpoint [endpoint-name]”.
+You can generate a new endpoint by typing the command `yo angular-fullstack:endpoint [endpoint-name]`.
 
 Those endpoints already have a link to a persistence layer like MongoDB in our case.
 
-### Grunt
+### [Grunt](http://gruntjs.com/) <a href="http://gruntjs.com/"><img src="img/logos/grunt.png" height="72" width="64" ></a>
+
 This is a task runner, in other words, it automates all the building tasks in order to save time and/or prevent manual buildings errors. In addition, we can make live changes in our code while grunt is running and it will update the projects build accordingly. So, if we make a change in our code, we can see it in “live” and we don’t have to use any commands to test the new changes in our project.
 
 Grunt in itself performs several tasks like minifying and testing the application’s code before running it. Here you can see the Grunt’s build pipeline:
 
 ![](img/grunt.png)
 
-### Bower and Node Package Manager (NPM)
+### [Bower](http://bower.io/) <a href="http://bower.io/"><img src="img/logos/bower.png" height="72" width="72" ></a> and [Node Package Manager (NPM)](https://www.npmjs.com/) <a href="https://www.npmjs.com/"><img src="img/logos/npm.png" height="48" width="123" ></a>
+
 Both of them are package managers. Those tools are made automate the process of installing, upgrading, configuring and removing packages.
 
-In other words, typing a command like “bower install jquery” will download a jquery package which contains all the needed files to use jquery in a project. The installation in itself isn’t really helpful, since it’s not hard to download something manually on a website, what is interesting is that we can automatically upgrade an old package just by typing a command like “bower update jquery”.
+In other words, typing a command like `bower install jquery` will download a jquery package which contains all the needed files to use jquery in a project. The installation in itself isn’t really helpful, since it’s not hard to download something manually on a website, what is interesting is that we can automatically upgrade an old package just by typing a command like `bower update jquery`.
 
 ## Technologies used in the project
 
 In this chapter, we will present all the technologies that are used around the project. That means, what we had to learn in order to use and deploy efficiently our project.
 
-### Javascript
+### [Javascript](http://www.w3schools.com/js/) <a href="http://www.w3schools.com/js/"><img src="img/logos/js.png" height="72" width="72" ></a>
 
-### [AngularJS](https://angularjs.org/)
+Javascript is a dynamic programming language mostly used in web applications. Its implementation allows client-side scripts to interact with the user, control the browser, communicate asynchronously and alter the content that is displayed.
+
+### [AngularJS](https://angularjs.org/) <a href="https://angularjs.org/"><img src="img/logos/angularjs.png" height="72" width="72" ></a>
 
 AngularJS is a framework for Javascript adding a whole dynamic environment to HTML page declaration.
 
@@ -127,18 +136,30 @@ By using an implicit annotation, the injector will look for a service with a mat
 ![](img/angular_dependency_injection.png)
 
 
-### Node.js
+### [Node.js](http://nodejs.org/) <a href="http://nodejs.org/"><img src="img/logos/nodejs.png" height="48" width="127" ></a>
+
 Rui
-### Socket.io
+
+### [Socket.io](http://socket.io/) <a href="http://nodejs.org/"><img src="img/logos/socketio.png" height="48" width="146" ></a>
+
 Rui
-### Persistence (MongoDB)
+
+### Persistence ([MongoDB](http://www.mongodb.org/)) <a href="http://www.mongodb.org/"><img src="img/logos/mongodb.png" height="48" width="164" ></a>
+
 Rui
-### Amazon S3
+
+### [Amazon S3](http://aws.amazon.com/s3/) <a href="http://aws.amazon.com/s3/"><img src="img/logos/awss3.png" height="48" width="192" ></a>
+
 Rui
-### Heroku
+
+### [Heroku](https://www.heroku.com) <a href="https://www.heroku.com"><img src="img/logos/heroku.png" height="48" width="153" ></a>
+
 Rui
-### Github
+
+### [Github](https://github.com/) <a href="https://github.com/"><img src="img/logos/github.png" height="48" width="51" ></a>
+
 Rui
+
 ## Sequence diagram
 Fréd & Rui
 What happens when you click on "Next" in a slide ?
