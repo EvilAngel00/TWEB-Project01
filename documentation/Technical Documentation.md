@@ -252,10 +252,6 @@ GitHub is web-based [Git](http://git-scm.com/) repository service. Git is a vers
 
 Our whole project is open-source and accessible through GitHub [here](https://github.com/EvilAngel00/TWEB-Project01).
 
-## Sequence diagram
-Fréd & Rui
-What happens when you click on "Next" in a slide ?
-
 
 
 
