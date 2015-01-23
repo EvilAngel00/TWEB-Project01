@@ -6,6 +6,28 @@ Firstly, we will go through the process in which we created the skeleton of the 
 
 Secondly, we will talk about the frameworks and technologies used in order to develop our functionalities.
 
+## Table of Contents
+
+* **[Scaffolding](#technologies-used-to-build-the-project-aka-scaffolding)**
+	* **[Yeoman](#yeoman-)**   
+	* **[Angular-Fullstack](#angular-fullstack)**
+	* **[Grunt](#grunt-)**
+	* **[Bower and NPM](#bower--and-node-package-manager-npm-)**  
+* **[Development](#technologies-used-in-the-project-aka-development)**
+	* **[Javascript](#javascript-)**
+	* **[AngularJS](#angularjs-)**
+		* **[Model-View-Controller](#model-view-controller-mvc)**
+		* **[Scope](#scope)**
+		* **[Dependency Injection](#dependency-injection)**
+	* **[Node.js](#nodejs-)** 
+		* **[Event Loop](#event-loop)**
+	* **[Socket.io](#socketio-)** 
+	* **[Persistence](#persistence-mongodb-)** 
+		* **[Mongoose](#mongoose)**
+	* **[Amazon S3](#amazon-s3-)** 
+	* **[Heroku](#heroku-)** 
+	* **[GitHub](#github-)** 
+
 ## Technologies used to build the project aka Scaffolding
 
 In this section, we will describe the tools we used to create and work on the project.
@@ -74,7 +96,7 @@ Both of them are package managers. Those tools are made automate the process of 
 
 In other words, typing a command like `bower install jquery` will download a jquery package which contains all the needed files to use jquery in a project. The installation in itself isn’t really helpful, since it’s not hard to download something manually on a website, what is interesting is that we can automatically upgrade an old package just by typing a command like `bower update jquery`.
 
-## Technologies used in the project
+## Technologies used in the project aka Development
 
 In this chapter, we will present all the technologies that are used around the project. That means, what we had to learn in order to use and deploy efficiently our project.
 
