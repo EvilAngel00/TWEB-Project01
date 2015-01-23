@@ -16,14 +16,14 @@ Secondly, we will talk about the frameworks and technologies used in order to de
 * **[Development](#technologies-used-in-the-project-aka-development)**
 	* **[Javascript](#javascript-)**
 	* **[AngularJS](#angularjs-)**
-		* **[Model-View-Controller](#model-view-controller-mvc)**
-		* **[Scope](#scope)**
-		* **[Dependency Injection](#dependency-injection)**
+		* *[Model-View-Controller](#model-view-controller-mvc)*
+		* *[Scope](#scope)*
+		* *[Dependency Injection](#dependency-injection)*
 	* **[Node.js](#nodejs-)** 
-		* **[Event Loop](#event-loop)**
+		* *[Event Loop](#event-loop)*
 	* **[Socket.io](#socketio-)** 
 	* **[Persistence](#persistence-mongodb-)** 
-		* **[Mongoose](#mongoose)**
+		* *[Mongoose](#mongoose)*
 	* **[Amazon S3](#amazon-s3-)** 
 	* **[Heroku](#heroku-)** 
 	* **[GitHub](#github-)** 
