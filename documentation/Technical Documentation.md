@@ -228,11 +228,11 @@ MongoDB is a document-oriented database (referred to as a NoSQL database). It ma
 
 MongoDB aggregates data under the form of *collections* of similar objects which can then be retrieved easily through simple queries.
 
-Within the context of our project, we manipulate JSON data that can be persisted through MongoDB.
+Within the context of our project, we manipulate JSON data that can be persisted through MongoDB and accessible through REST calls to the API.
 
 #### [Mongoose](http://mongoosejs.com/)
 
-Our project is written in Javascript and Mongoose is a plug-in used with Node.js which allows us to easily perform CRUD operations on our database. The Angular-Fullstack generator delivers us a fully functional architecture with a connection to a database and a very simple generation of collections through the creation of *endpoints*.
+Our project is written in Javascript and Mongoose is a plug-in used with Node.js which allows us to easily perform CRUD operations on our database. The Angular-Fullstack generator delivers us a fully functional architecture with a connection to a database and a very simple generation of collections through the creation of API *endpoints*.
 
 On top of that, we can use AngularJS directives such as `$http.get()` and `$http.post()` that use Mongoose as middleware to perform CRUD operations.
 
